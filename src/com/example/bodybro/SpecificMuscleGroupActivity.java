@@ -34,6 +34,7 @@ public class SpecificMuscleGroupActivity extends Activity {
 			}
 		});
 		
+		//update the text box with the muscle label sent from the previous activity
 		TextView activityTitle = (TextView) findViewById(R.id.text_view_specific_group);
 		activityTitle.setText(muscleLabel);
 		

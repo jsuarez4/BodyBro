@@ -14,21 +14,25 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		
+		//setting up the workout button
 		Button buttonWorkout = (Button) findViewById(R.id.button_workout);
 		buttonWorkout.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
+				//when the button is clicked, open the MuscleGrouopActivity
 				startActivity(new Intent(MainActivity.this, MuscleGroupActivity.class));
 			}
 		});
 		
+		//setting up the history button
 		Button buttonHistory = (Button) findViewById(R.id.button_history);
 		buttonHistory.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
+				//when the button is clicked, open the HistoryActivity
 				startActivity(new Intent(MainActivity.this, HistoryActivity.class));
 			}
 		});
