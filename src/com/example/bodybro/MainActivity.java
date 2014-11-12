@@ -18,9 +18,6 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		//initializing Parse.com stuff
-		Parse.initialize(this, "05Bkc0xDEqMmdoXxvsGFodE8X55Ci3s1huL2yBh7", "uYz8u93WCYH509Zgc2GmOHd0VdnqE4ZHVCQsL85q");
-		
 		//setting up the workout button
 		Button buttonWorkout = (Button) findViewById(R.id.button_workout);
 		buttonWorkout.setOnClickListener(new View.OnClickListener() {

@@ -20,7 +20,7 @@ public class HistoryActivity extends Activity {
 		 * THIS IS PURELY FOR THE DEMO AND EXTREMELY CLUNKY, FIX LATER
 		 * TODO Fix this shizzzz yo.
 		 */
-		Button armsWorkout = ((Button)findViewById(R.id.button1));
+		Button armsWorkout = ((Button)findViewById(R.id.button_create_workout_done));
 		armsWorkout.setOnClickListener(new View.OnClickListener() {
 			
 			@Override

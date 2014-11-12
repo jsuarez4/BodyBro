@@ -28,5 +28,7 @@
     <string name="title_activity_history">HistoryActivity</string>
     <string name="label_button_organize">Organize</string>
     <string name="label_button_done">Done</string>
+    <string name="string_button_done">Done</string>
+    <string name="string_delete">Delete</string>
 
 </resources>
