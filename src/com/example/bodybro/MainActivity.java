@@ -2,6 +2,7 @@ package com.example.bodybro;
 
 import com.parse.Parse;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,6 +18,10 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		ParseUser currentUser = ParseUser.getCurrentUser();
+		if(currentUser == null){
+			startActivity(new Intent(MainActivity.this, LoginActivity.class));
+		}
 		
 		//setting up the workout button
 		Button buttonWorkout = (Button) findViewById(R.id.button_workout);
