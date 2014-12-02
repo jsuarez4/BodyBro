@@ -34,5 +34,9 @@
     <string name="username_hint">Enter your username</string>
     <string name="hint_password">Enter your password</string>
     <string name="label_button_login">Login</string>
+    <string name="string_button_to_register">Register</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="string_button_finish_register">Finish</string>
+    <string name="hint_password_confirm">Confirm your password</string>
 
 </resources>

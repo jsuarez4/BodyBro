@@ -14,14 +14,21 @@ import android.widget.Button;
 
 public class MainActivity extends Activity {
 
+	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+	protected void onResume() {
 		ParseUser currentUser = ParseUser.getCurrentUser();
 		if(currentUser == null){
 			startActivity(new Intent(MainActivity.this, LoginActivity.class));
 		}
+		super.onResume();
+	}
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		
 		
 		//setting up the workout button
 		Button buttonWorkout = (Button) findViewById(R.id.button_workout);
