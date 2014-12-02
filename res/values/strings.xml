@@ -38,5 +38,8 @@
     <string name="title_activity_register">RegisterActivity</string>
     <string name="string_button_finish_register">Finish</string>
     <string name="hint_password_confirm">Confirm your password</string>
+    <string name="title_activity_splash_screen">SplashScreenActivity</string>
+    <string name="string_splash_title">SUPER AWESOME SPLASHSCREEN</string>
+    <string name="string_button_history_item_to_workout">Use This Workout</string>
 
 </resources>

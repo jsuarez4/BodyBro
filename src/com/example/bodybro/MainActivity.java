@@ -18,6 +18,7 @@ public class MainActivity extends Activity {
 	
 	@Override
 	protected void onResume() {
+		super.onResume();
 		ParseUser currentUser = ParseUser.getCurrentUser();
 		if(currentUser == null){
 			//if there is no current user, then start the login activity
@@ -26,14 +27,13 @@ public class MainActivity extends Activity {
 			//if there is a current user then put the username at the bottom of the screen
 			((TextView)findViewById(R.id.text_view_username)).setText("Logged in as:" + currentUser.getUsername());
 		}
-		super.onResume();
+		
 	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
 		
 		//setting up the workout button
 		Button buttonWorkout = (Button) findViewById(R.id.button_workout);
