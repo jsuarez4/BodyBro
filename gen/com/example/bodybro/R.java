@@ -22,19 +22,18 @@ public final class R {
         public static final int button_create_workout_done=0x7f060004;
         public static final int button_done=0x7f060007;
         public static final int button_finish=0x7f060017;
-        public static final int button_friends=0x7f06000e;
         public static final int button_history=0x7f06000d;
         public static final int button_history_specific_group=0x7f06001e;
         public static final int button_legs=0x7f060014;
         public static final int button_login=0x7f06000a;
         public static final int button_new_row=0x7f060003;
         public static final int button_randomize_workout=0x7f06001c;
-        public static final int button_settings=0x7f06000f;
+        public static final int button_settings=0x7f06000e;
         public static final int button_shoulders=0x7f060013;
         public static final int button_to_register=0x7f06000b;
         public static final int button_use_workout=0x7f060022;
         public static final int button_workout=0x7f06000c;
-        public static final int check_box_newbie=0x7f060010;
+        public static final int check_box_newbie=0x7f06000f;
         public static final int editText3=0x7f06001a;
         public static final int edit_text_list_view_create_reps=0x7f060021;
         public static final int edit_text_list_view_create_weight=0x7f060020;
@@ -52,6 +51,7 @@ public final class R {
         public static final int text_view_history_workout_type=0x7f060025;
         public static final int text_view_list_view_create_label=0x7f06001f;
         public static final int text_view_specific_group=0x7f06001b;
+        public static final int text_view_username=0x7f060010;
     }
     public static final class layout {
         public static final int activity_create_workout=0x7f030000;

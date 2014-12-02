@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
@@ -19,7 +20,11 @@ public class MainActivity extends Activity {
 	protected void onResume() {
 		ParseUser currentUser = ParseUser.getCurrentUser();
 		if(currentUser == null){
+			//if there is no current user, then start the login activity
 			startActivity(new Intent(MainActivity.this, LoginActivity.class));
+		} else {
+			//if there is a current user then put the username at the bottom of the screen
+			((TextView)findViewById(R.id.text_view_username)).setText("Logged in as:" + currentUser.getUsername());
 		}
 		super.onResume();
 	}
