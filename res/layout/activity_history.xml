@@ -4,16 +4,6 @@
     android:layout_height="match_parent"
     tools:context="${relativePackage}.${activityClass}" >
 
-    <ListView
-        android:id="@+id/list_view_history"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button_done"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" >
-
-    </ListView>
-
     <Button
         android:id="@+id/button_done"
         android:layout_width="match_parent"
@@ -21,5 +11,30 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="@string/label_button_done" />
+
+    <ListView
+        android:id="@+id/list_view_history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dropdown_muscle_group"
+        android:layout_above="@+id/button_done"
+        android:layout_alignParentLeft="true" >
+
+    </ListView>
+
+    <Spinner
+        android:id="@+id/dropdown_muscle_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview_filter_history_label"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/textview_filter_history_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/string_dropdown_label" />
 
 </RelativeLayout>
