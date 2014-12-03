@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
 			startActivity(new Intent(MainActivity.this, LoginActivity.class));
 		} else {
 			//if there is a current user then put the username at the bottom of the screen
-			((TextView)findViewById(R.id.text_view_username)).setText("Logged in as:" + currentUser.getUsername());
+			((TextView)findViewById(R.id.text_view_username)).setText("Logged in as: " + currentUser.getUsername());
 		}
 		
 	}

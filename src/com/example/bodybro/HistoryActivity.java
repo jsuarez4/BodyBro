@@ -49,7 +49,7 @@ public class HistoryActivity extends Activity {
 			query.whereEqualTo("workoutType", filterByWorkoutType);
 		}
 		
-		//go
+		//go make the query
 		query.findInBackground(new FindCallback<ParseObject>() {
 		    public void done(List<ParseObject> scoreList, ParseException e) {
 		        if (e == null) {
@@ -122,32 +122,14 @@ public class HistoryActivity extends Activity {
 			}
 		});
 		
-	}
-	
-	/**
-	 * An asynctask will allow a loading screen to pop up while the data is retrieved from the server
-	 * @author Ed-Desktop
-	 *
-	 */
-	public class HistoryLoadingDialog extends AsyncTask<String, Void, Void>{
-
-		@Override
-		protected Void doInBackground(String... params) {
-			//setting up a loading screen to appear
-			ProgressDialog loadingDialog = new ProgressDialog(HistoryActivity.this);
-			loadingDialog.setIndeterminate(true);
-			loadingDialog.setMessage("Retrieving data from server...");
-			loadingDialog.setTitle("Loading History");
+		Button btnDone = (Button) findViewById(R.id.button_done);
+		btnDone.setOnClickListener(new View.OnClickListener() {
 			
-			//if we send true then start the loading screen, else stop the loading screen
-			if (params[0].equals("go")){
-				loadingDialog.show();
-			} else {
-				loadingDialog.dismiss();
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(HistoryActivity.this, MainActivity.class));
 			}
-			
-			return null;
-		}
+		});
 		
 	}
 }
