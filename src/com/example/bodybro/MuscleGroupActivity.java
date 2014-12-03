@@ -47,6 +47,16 @@ public class MuscleGroupActivity extends Activity {
 					startActivity(intent);
 				}
 			});
+			//initialize create workout button
+			Button createWorkoutButton = (Button) findViewById(R.id.button_create_workout);
+			createWorkoutButton.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					//TODO: send a tag to the next activity that says if the new workout is random or not
+					startActivity(new Intent(MuscleGroupActivity.this, CreateWorkoutActivity.class));
+				}
+			});
 		}
 		
 		
