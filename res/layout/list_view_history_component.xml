@@ -13,13 +13,6 @@
         android:text="@string/string_button_history_item_to_workout" />
 
     <TextView
-        android:id="@+id/text_view_history_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="TextView" />
-
-    <TextView
         android:id="@+id/text_view_history_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,6 +21,13 @@
 
     <TextView
         android:id="@+id/text_view_history_workout_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/text_view_history_workout_exercise"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"

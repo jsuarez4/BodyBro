@@ -25,6 +25,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class HistoryActivity extends Activity {
@@ -32,13 +33,18 @@ public class HistoryActivity extends Activity {
 	//this will be used to filter by workoutType
 	String filterByWorkoutType = null;
 	String[] dropdownItems = {"All", "Arms", "Legs", "Chest", "Back", "Body Weight"};
+	ParseUser currentUser;
 	
 	@Override
 	protected void onResume() {
 		super.onResume();
 		
 		//pull the current user
-		ParseUser currentUser = ParseUser.getCurrentUser();
+		currentUser = ParseUser.getCurrentUser();
+	
+		//show who is logged in at top of screen
+		TextView tvLoggedInAs = (TextView) findViewById(R.id.text_view_history_logged_in_as);
+		tvLoggedInAs.setText("Logged in as: " + currentUser.getUsername());
 		
 		//create a parsequery for the history table then query for all the user's history
 		ParseQuery<ParseObject> query = ParseQuery.getQuery("History");
@@ -61,9 +67,10 @@ public class HistoryActivity extends Activity {
 		        	   String name = obj.getString("user");
 		        	   Date date = obj.getUpdatedAt();
 		        	   String workoutType = obj.getString("workoutType");
+		        	   String workoutExercise = obj.getString("exercise");
 		        	   
 		        	   //make history item out of the info then place it in a list
-		        	   HistoryItem newHistoryItem = new HistoryItem(name, date.toString(), workoutType);
+		        	   HistoryItem newHistoryItem = new HistoryItem(name, date.toString(), workoutType, workoutExercise);
 		        	   historyList.add(newHistoryItem);
 		           }
 		           

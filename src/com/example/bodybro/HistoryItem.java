@@ -1,13 +1,15 @@
 package com.example.bodybro;
 
 public class HistoryItem {
-	String name, date, workoutType;
+	String name, date, workoutType, workoutExercise;
 
-	public HistoryItem(String name, String date, String workoutType) {
+	public HistoryItem(String name, String date, String workoutType,
+			String workoutExercise) {
 		super();
 		this.name = name;
 		this.date = date;
 		this.workoutType = workoutType;
+		this.workoutExercise = workoutExercise;
 	}
 
 	public String getName() {
@@ -33,5 +35,15 @@ public class HistoryItem {
 	public void setWorkoutType(String workoutType) {
 		this.workoutType = workoutType;
 	}
+
+	public String getWorkoutExercise() {
+		return workoutExercise;
+	}
+
+	public void setWorkoutExercise(String workoutExercise) {
+		this.workoutExercise = workoutExercise;
+	}
+
+	
 	
 }

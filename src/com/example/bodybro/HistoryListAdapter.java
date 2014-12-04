@@ -53,13 +53,13 @@ public class HistoryListAdapter extends ArrayAdapter<HistoryItem>{
 		
 		//attach logic to the text views on each row in this list
 		TextView tvHistoryDate = (TextView) convertView.findViewById(R.id.text_view_history_date);
-		TextView tvHistoryName = (TextView) convertView.findViewById(R.id.text_view_history_name);
 		TextView tvHistoryWorkoutType = (TextView) convertView.findViewById(R.id.text_view_history_workout_type);
+		TextView tvHistoryWorkoutExercise = (TextView) convertView.findViewById(R.id.text_view_history_workout_exercise);
 		
 		//set those text views to the historyItem data
 		tvHistoryDate.setText("Date: " + historyItem.getDate());
-		tvHistoryName.setText("Name: " + historyItem.getName());
 		tvHistoryWorkoutType.setText("Workout Type: " + historyItem.getWorkoutType());
+		tvHistoryWorkoutExercise.setText("Exercise: " + historyItem.getWorkoutExercise());
 		
 		return convertView;
 	}
