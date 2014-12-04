@@ -1,40 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="${relativePackage}.${activityClass}" >
+    tools:context="${relativePackage}.${activityClass}">
+
 
     <TextView
-        android:id="@+id/text_view_create_workout_title"
-        android:layout_width="wrap_content"
+        android:id="@+id/dropdown_textview"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/label_text_view_create_workout_title"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:background="@drawable/dropdown_background"
+        android:drawableRight="@drawable/icn_dropdown_open"
+        android:gravity="center_vertical|left"
+        android:padding="10dip"
+        android:text="Select Muscle" />
 
-    <LinearLayout
-        android:id="@+id/main_linear_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/text_view_create_workout_title"
-        android:layout_centerHorizontal="true"
-        android:orientation="vertical" >
-
-        <LinearLayout
-            android:id="@+id/root_row"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <Button
-                android:id="@+id/button_new_row"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/label_button_new_row" />
-
-        </LinearLayout>
-
-    </LinearLayout>
 
     <Button
         android:id="@+id/button_create_workout_done"
@@ -42,8 +23,93 @@
         android:layout_height="75dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:text="@string/string_button_done" />
+        android:text="@string/string_button_done"  />
 
+
+    <LinearLayout
+        android:id="@+id/dropdown_foldout_menu"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dropdown_textview"
+        android:layout_marginTop="2dip"
+        android:background="@drawable/dropdown_background"
+        android:orientation="vertical"
+        android:padding="1dip"
+        android:visibility="gone" >
+
+
+
+                <TextView
+            android:id="@+id/dropdown_Chest"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|left"
+            android:padding="10dip"
+            android:text="@string/drop_downselect_Chest" />
+
+ 
+         <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#cccccc" />
+        <TextView
+            android:id="@+id/dropdown_Back"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|left"
+            android:padding="10dip"
+            android:text="@string/drop_downselect_Back" />
+ 
+         <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#cccccc" />
+        <TextView
+            android:id="@+id/dropdown_Shoulders"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|left"
+            android:padding="10dip"
+            android:text="@string/drop_downselect_Shoulders" />
+        
+
+         <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#cccccc" />
+        <TextView
+            android:id="@+id/dropdown_Legs"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|left"
+            android:padding="10dip"
+            android:text="@string/drop_downselect_Legs" />
+
+         <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#cccccc" />
+        <TextView
+            android:id="@+id/dropdown_Arms"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|left"
+            android:padding="10dip"
+            android:text="@string/drop_downselect_Arms" />
+
+         <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#cccccc" />
+        <TextView
+            android:id="@+id/dropdown_BodyW"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|left"
+            android:padding="10dip"
+            android:text="@string/drop_downselect_Body_W" />
+    </LinearLayout>
+    
     <ListView
         android:id="@+id/list_view_create_workout"
         android:layout_width="match_parent"
@@ -51,7 +117,6 @@
         android:layout_above="@+id/button_create_workout_done"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/main_linear_layout" >
-
     </ListView>
 
 </RelativeLayout>
