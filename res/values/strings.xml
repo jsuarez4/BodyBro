@@ -42,5 +42,12 @@
     <string name="string_splash_title">SUPER AWESOME SPLASHSCREEN</string>
     <string name="string_button_history_item_to_workout">Use This Workout</string>
     <string name="string_dropdown_label">Filter history by:</string>
+    <string name="drop_downselect">Choose Muscle</string>
+    <string name="drop_downselect_Chest">Chest</string>
+    <string name="drop_downselect_Back">Back</string>
+    <string name="drop_downselect_Shoulders">Shoulders</string>
+	<string name="drop_downselect_Legs">Legs</string>
+	<string name="drop_downselect_Arms">Arms</string>
+	<string name="drop_downselect_Body_W">Body Weight</string>
 
 </resources>
