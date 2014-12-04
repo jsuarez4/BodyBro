@@ -21,9 +21,9 @@ import android.widget.Toast;
 
 public class CreateWorkoutActivity extends Activity {
 	//list of workouts located on the screen
-//	List<Workout> workoutList;
-//	CreateWorkoutListAdapter listViewAdapter;
-//	ListView listView;
+	List<Workout> workoutList;
+	CreateWorkoutListAdapter listViewAdapter;
+	ListView listView;
 	
 	//layout for dropdown
 	private LinearLayout Musclelayout;
@@ -34,9 +34,15 @@ public class CreateWorkoutActivity extends Activity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_create_workout);
+		
+		
+		
+		//list view
+		listView = (ListView) findViewById(R.id.list_view_create_workout);
+		workoutList = new ArrayList<Workout>();
+
 		
 		Musclelayout = ((LinearLayout)findViewById(R.id.dropdown_foldout_menu));
 		DropDownMuscleM = ((TextView)findViewById(R.id.dropdown_textview));
@@ -75,7 +81,23 @@ public class CreateWorkoutActivity extends Activity {
                 drop_downselect_Legs.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                 drop_downselect_Arms.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                 drop_downselect_Body_W.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                Toast.makeText(getBaseContext(), R.string.drop_downselect_Chest, Toast.LENGTH_SHORT).show();				
+                
+    				//add a new workout to the list
+    				Workout workout = new Workout("Chest", "Bench", "3", "100");
+    				workoutList.add(workout);
+    				
+    				//setup the adapter to create the list view
+    				listViewAdapter = new CreateWorkoutListAdapter(CreateWorkoutActivity.this, R.layout.list_view_create_workout, workoutList);
+    				
+    				//notify that the list has been changed
+    				listViewAdapter.notifyDataSetChanged();
+    				
+    				//set the adapter to the list view on the UI
+    				listView.setAdapter(listViewAdapter);   
+                
+                
+                Toast.makeText(getBaseContext(), R.string.drop_downselect_Chest, Toast.LENGTH_SHORT).show();
+                
 			}
 		});
 		
@@ -91,6 +113,22 @@ public class CreateWorkoutActivity extends Activity {
                 drop_downselect_Legs.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                 drop_downselect_Arms.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                 drop_downselect_Body_W.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                
+				//add a new workout to the list
+				Workout workout = new Workout("Chest", "Bench", "3", "100");
+				workoutList.add(workout);
+				
+				//setup the adapter to create the list view
+				listViewAdapter = new CreateWorkoutListAdapter(CreateWorkoutActivity.this, R.layout.list_view_create_workout, workoutList);
+				
+				//notify that the list has been changed
+				listViewAdapter.notifyDataSetChanged();
+				
+				//set the adapter to the list view on the UI
+				listView.setAdapter(listViewAdapter); 
+                
+                
+                
                 Toast.makeText(getBaseContext(), R.string.drop_downselect_Shoulders, Toast.LENGTH_SHORT).show();				
 			}
 		});
@@ -106,6 +144,22 @@ public class CreateWorkoutActivity extends Activity {
                 drop_downselect_Back.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                 drop_downselect_Arms.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                 drop_downselect_Body_W.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                
+				//add a new workout to the list
+				Workout workout = new Workout("Chest", "Bench", "3", "100");
+				workoutList.add(workout);
+				
+				//setup the adapter to create the list view
+				listViewAdapter = new CreateWorkoutListAdapter(CreateWorkoutActivity.this, R.layout.list_view_create_workout, workoutList);
+				
+				//notify that the list has been changed
+				listViewAdapter.notifyDataSetChanged();
+				
+				//set the adapter to the list view on the UI
+				listView.setAdapter(listViewAdapter); 
+                
+                
+                
                 Toast.makeText(getBaseContext(), R.string.drop_downselect_Legs, Toast.LENGTH_SHORT).show();				
 			}
 		});
@@ -121,6 +175,22 @@ public class CreateWorkoutActivity extends Activity {
                 drop_downselect_Legs.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                 drop_downselect_Back.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                 drop_downselect_Body_W.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                
+                
+				//add a new workout to the list
+				Workout workout = new Workout("Chest", "Bench", "3", "100");
+				workoutList.add(workout);
+				
+				//setup the adapter to create the list view
+				listViewAdapter = new CreateWorkoutListAdapter(CreateWorkoutActivity.this, R.layout.list_view_create_workout, workoutList);
+				
+				//notify that the list has been changed
+				listViewAdapter.notifyDataSetChanged();
+				
+				//set the adapter to the list view on the UI
+				listView.setAdapter(listViewAdapter); 
+                
+                
                 Toast.makeText(getBaseContext(), R.string.drop_downselect_Arms, Toast.LENGTH_SHORT).show();				
 			}
 		});
@@ -136,6 +206,22 @@ public class CreateWorkoutActivity extends Activity {
                 drop_downselect_Legs.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                 drop_downselect_Arms.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                 drop_downselect_Back.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                
+                
+                
+                
+				//add a new workout to the list
+				Workout workout = new Workout("Chest", "Bench", "3", "100");
+				workoutList.add(workout);
+				
+				//setup the adapter to create the list view
+				listViewAdapter = new CreateWorkoutListAdapter(CreateWorkoutActivity.this, R.layout.list_view_create_workout, workoutList);
+				
+				//notify that the list has been changed
+				listViewAdapter.notifyDataSetChanged();
+				
+				//set the adapter to the list view on the UI
+				listView.setAdapter(listViewAdapter); 
                 Toast.makeText(getBaseContext(), R.string.drop_downselect_Body_W, Toast.LENGTH_SHORT).show();				
 			}
 		});
@@ -151,6 +237,21 @@ public class CreateWorkoutActivity extends Activity {
                 drop_downselect_Legs.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                 drop_downselect_Arms.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                 drop_downselect_Body_W.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                
+                
+                
+				//add a new workout to the list
+				Workout workout = new Workout("Chest", "Bench", "3", "100");
+				workoutList.add(workout);
+				
+				//setup the adapter to create the list view
+				listViewAdapter = new CreateWorkoutListAdapter(CreateWorkoutActivity.this, R.layout.list_view_create_workout, workoutList);
+				
+				//notify that the list has been changed
+				listViewAdapter.notifyDataSetChanged();
+				
+				//set the adapter to the list view on the UI
+				listView.setAdapter(listViewAdapter); 
                 Toast.makeText(getBaseContext(), R.string.drop_downselect_Back, Toast.LENGTH_SHORT).show();				
 			}
 		});
@@ -158,10 +259,8 @@ public class CreateWorkoutActivity extends Activity {
 		
 		
 		
-//		//list view
-//		listView = (ListView) findViewById(R.id.list_view_create_workout);
-//		workoutList = new ArrayList<Workout>();
-//		
+
+		
 //		//initialize the new row button
 //		Button buttonNewRow = (Button) findViewById(R.id.button_new_row);
 //		buttonNewRow.setOnClickListener(new View.OnClickListener() {
