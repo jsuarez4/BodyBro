@@ -6,12 +6,12 @@ public class Workout {
 	 * muscleGroup = Chest, Arms, Legs, etc
 	 * name = Curls, Flies, Bench, etc
 	 */
-	String name, reps, weight;
+	String exercise, reps, weight;
 
-	public Workout(int position, String name, String reps, String weight) {
+	public Workout(int position, String exercise, String reps, String weight) {
 		super();
 		this.muscleGroup = position;
-		this.name = name;
+		this.exercise = exercise;
 		this.reps = reps;
 		this.weight = weight;
 	}
@@ -24,12 +24,12 @@ public class Workout {
 		this.muscleGroup = muscleGroup;
 	}
 
-	public String getName() {
-		return name;
+	public String getExercise() {
+		return exercise;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setExercise(String exercise) {
+		this.exercise = exercise;
 	}
 
 	public String getReps() {
@@ -50,9 +50,12 @@ public class Workout {
 
 	@Override
 	public String toString() {
-		return "Workout [muscleGroup=" + muscleGroup + ", name=" + name
+		return "Workout [muscleGroup=" + muscleGroup + ", exercise=" + exercise
 				+ ", reps=" + reps + ", weight=" + weight + "]";
 	}
+
+
+
 	
 	
 }

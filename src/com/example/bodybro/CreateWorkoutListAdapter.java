@@ -37,9 +37,9 @@ public class CreateWorkoutListAdapter extends ArrayAdapter<Workout>{
 		
 		//pull the currently selected workout from the list
 		Workout selectedWorkout = workoutList.get(position);
-		
-		
 		TextView workMuscle = (TextView)convertView.findViewById(R.id.text_view_list_view_workout_type);
+		
+		
 		//this is the reps box located in list_view_create_workout.xml
 		EditText repBox = (EditText) convertView.findViewById(R.id.edit_text_list_view_create_reps);
 		repBox.setHint("Enter your reps, bro");
@@ -50,7 +50,7 @@ public class CreateWorkoutListAdapter extends ArrayAdapter<Workout>{
 		
 		//textview that represents the exercise such as "bench", "curls", etc
 		EditText exersizeBox = (EditText) convertView.findViewById(R.id.edit_text_list_view_create_exersize);
-		exersizeBox.setText("exersize name");
+		exersizeBox.setHint("exersize name");
 		
 		return convertView;
 	}

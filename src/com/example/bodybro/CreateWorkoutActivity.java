@@ -35,13 +35,12 @@ public class CreateWorkoutActivity extends Activity {
 	//list of workouts located on the screen	
 	ListView listView;
 	List<Workout> workoutList;
-	List<MuscleItem> muscleList;
 	
 	//this will be used to filter by workoutType
 	String filterByWorkoutType = null;
 	String[] dropdownItems = {"Choose a Muscle Group","Arms", "Legs", "Chest", "Back", "Body Weight"};
 	ParseUser currentUser;
-	ParseObject addWorkout = new ParseObject("History");
+	ParseObject addWorkout = new ParseObject("Exercises");
 	
 	@Override
 	protected void onResume() {
@@ -55,52 +54,61 @@ public class CreateWorkoutActivity extends Activity {
 //#		tvLoggedInAs.setText("Logged in as: " + currentUser.getUsername());
 		
 		//create a parsequery for the history table then query for all the user's history
-		ParseQuery<ParseObject> query = ParseQuery.getQuery("History");
-		query.whereEqualTo("user", currentUser.getUsername());
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("Exercises");
+		query.whereEqualTo("muscleGroup", currentUser.getUsername());
 		
-		//if filterByWorkoutType is null then we do not want to filter out any of the workout types
-		if(filterByWorkoutType != null) {
-			query.whereEqualTo("workoutType", filterByWorkoutType);
-		}
-		
-		//go make the query
-		query.findInBackground(new FindCallback<ParseObject>() {
-		    public void done(List<ParseObject> scoreList, ParseException e) {
-		        if (e == null) {
-		           //wipe out the historyList for a new list about to come
-		        	workoutList = new ArrayList<Workout>();
-		           //it worked, now add all of the history data into historyItem objects then put them in a list
-		           for (ParseObject obj : scoreList) {
-		        	   //pull info from database
-		        	   String name = obj.getString("user");
-		        	   Date date = obj.getUpdatedAt();
-		        	   int workoutType = obj.getInt("workoutType");
-		        	   String workoutExercise = obj.getString("exercise");
-		        	   String workoutWeight = obj.getString("weight");
-		        	   String workoutReps = obj.getString("reps");
+//		//if filterByWorkoutType is null then we do not want to filter out any of the workout types
+//		if(filterByWorkoutType != null) {
+//			query.whereEqualTo("workoutType", filterByWorkoutType);
+//		}
+//		
+//		//go make the query
+//		query.findInBackground(new FindCallback<ParseObject>() {
+//		    public void done(List<ParseObject> scoreList, ParseException e) {
+//		        if (e == null) {
+//		           //wipe out the historyList for a new list about to come
+//		        	workoutList = new ArrayList<Workout>();
+//		           //it worked, now add all of the history data into historyItem objects then put them in a list
+//		           for (ParseObject obj : scoreList) {
+////		        	   //pull info from database
+////		        	   String name = obj.getString("user");
+////		        	   Date date = obj.getUpdatedAt();
+////		        	   int workoutType = obj.getInt("workoutType");
+////		        	   String workoutExercise = obj.getString("exercise");
+////		        	   String workoutWeight = obj.getString("weight");
+////		        	   String workoutReps = obj.getString("reps");
 		        	   
-		        	   //make history item out of the info then place it in a list
-		        	   Workout newHistoryItem = new Workout( workoutType, workoutExercise,workoutWeight,workoutReps);
-		        	   workoutList.add(newHistoryItem);
-		           }
+		        	  
+//		        	   int workoutType = 1 ;
+//		        	   String workoutExercise="exersize" ;
+//		        	   String workoutWeight= "weight";
+//		        	   String workoutReps="reps";
+//		        	   
+//		        	   //make work item out of the info then place it in a list
+//		        	   Workout newWorkItem = new Workout( workoutType, workoutExercise,workoutWeight,workoutReps);
+//		        	   workoutList.add(newWorkItem);
+//	           }
 		           
-			   		//now populate the list on this activity
-			   		ListView historyListView = (ListView) findViewById(R.id.list_view_create_workout);
-			   		//clean out the list adapter in case there are leftover items in it
-			   		historyListView.setAdapter(null);
-			   		//setup the adapter to tell the listview HOW to list the information
-			   		CreateWorkoutListAdapter historyListViewAdapter = new CreateWorkoutListAdapter(CreateWorkoutActivity.this, R.layout.list_view_create_workout, workoutList);
-			   		//attach the adapter to the listview so that it is drawn to the screen
-			   		historyListView.setAdapter(historyListViewAdapter);
-		        } else {
+//			   		//now populate the list on this activity
+//			   		ListView historyListView = (ListView) findViewById(R.id.list_view_create_workout);
+//			   		//clean out the list adapter in case there are leftover items in it
+//			   		historyListView.setAdapter(null);
+//			   		//setup the adapter to tell the listview HOW to list the information
+//			   		CreateWorkoutListAdapter historyListViewAdapter = new CreateWorkoutListAdapter(CreateWorkoutActivity.this, R.layout.list_view_create_workout, workoutList);
+//			   		//attach the adapter to the listview so that it is drawn to the screen
+//			   		historyListView.setAdapter(historyListViewAdapter);
+//		        } 
+//else {
 		        	//something screwed up
-		            Toast.makeText(CreateWorkoutActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
-		        }
-		    }
-		});
+//	            Toast.makeText(CreateWorkoutActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
+//		        }
+//		    }
+//		});
 	}
 
 
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -123,6 +131,28 @@ public class CreateWorkoutActivity extends Activity {
 				if (position != 0) {
 					//set filter by to whatever the array has for this position
 					filterByWorkoutType = dropdownItems[position].toLowerCase();
+					
+					
+					
+					workoutList = new ArrayList<Workout>();
+					   int workoutType = position ;
+					   String workoutExercise="1" ;
+					   String workoutWeight= "1";
+					   String workoutReps="1";
+					   
+					   //make work item out of the info then place it in a list
+					   Workout newWorkItem = new Workout( workoutType, workoutExercise,workoutReps,workoutWeight);
+					   workoutList.add(newWorkItem);
+						//now populate the list on this activity
+						ListView historyListView = (ListView) findViewById(R.id.list_view_create_workout);
+						//clean out the list adapter in case there are leftover items in it
+						historyListView.setAdapter(null);
+						//setup the adapter to tell the listview HOW to list the information
+						CreateWorkoutListAdapter historyListViewAdapter = new CreateWorkoutListAdapter(CreateWorkoutActivity.this, R.layout.list_view_create_workout, workoutList);
+						//attach the adapter to the listview so that it is drawn to the screen
+						historyListView.setAdapter(historyListViewAdapter);
+					
+	
 				} else {
 					filterByWorkoutType = null;
 				}
@@ -144,6 +174,14 @@ public class CreateWorkoutActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
+				//add to parsehistory page
+				ParseObject addCustom = new ParseObject("History");
+//				addCustom.put("exercise", R.id.edit_text_list_view_create_exersize);
+//				addCustom.put("workoutType", R.id.text_view_list_view_workout_type);
+//				addCustom.put("reps", R.id.edit_text_list_view_create_reps);
+//				addCustom.put("weight", R.id.edit_text_list_view_create_weight);
+				addCustom.saveInBackground();
+
 				startActivity(new Intent(CreateWorkoutActivity.this, MainActivity.class));
 			}
 		});
