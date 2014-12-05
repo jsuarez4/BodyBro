@@ -4,8 +4,62 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="${relativePackage}.${activityClass}">
+ 
+    
+        <Button
+        android:id="@+id/button_done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/label_button_done" />
 
+    <ListView
+        android:id="@+id/list_view_create_workout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dropdown_muscle_group"
+        android:layout_above="@+id/button_done"
+        android:layout_alignParentLeft="true" >
 
+    </ListView>
+
+    <Spinner
+        android:id="@+id/dropdown_muscle_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" />
+    
+    
+    
+    <!--  
+    <Button
+        android:id="@+id/button_done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/label_button_done" />
+
+    <ListView
+        android:id="@+id/list_view_create_workout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dropdown_muscle_group"
+        android:layout_above="@+id/button_done"
+        android:layout_alignParentLeft="true" >
+
+    </ListView>
+
+    <Spinner
+        android:id="@+id/dropdown_muscle_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" />
+
+    
+    -->
+<!-- 
     <TextView
         android:id="@+id/dropdown_textview"
         android:layout_width="fill_parent"
@@ -115,8 +169,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/button_create_workout_done"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/main_linear_layout" >
+        android:layout_alignParentLeft="true" >
     </ListView>
+ -->
+
 
 </RelativeLayout>

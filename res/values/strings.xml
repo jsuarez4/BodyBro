@@ -5,6 +5,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_main_menu">MainMenu</string>
     <string name="label_button_workout">Workout!</string>
+
     <string name="label_check_box_newbie">I\'m New</string>
     <string name="label_button_history">History</string>
     <string name="label_button_friends">Friends</string>

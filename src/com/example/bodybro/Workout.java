@@ -1,25 +1,26 @@
 package com.example.bodybro;
 
 public class Workout {
+	int muscleGroup;
 	/*
 	 * muscleGroup = Chest, Arms, Legs, etc
 	 * name = Curls, Flies, Bench, etc
 	 */
-	String muscleGroup, name, reps, weight;
+	String name, reps, weight;
 
-	public Workout(String muscleGroup, String name, String reps, String weight) {
+	public Workout(int position, String name, String reps, String weight) {
 		super();
-		this.muscleGroup = muscleGroup;
+		this.muscleGroup = position;
 		this.name = name;
 		this.reps = reps;
 		this.weight = weight;
 	}
 
-	public String getMuscleGroup() {
+	public int getMuscleGroup() {
 		return muscleGroup;
 	}
 
-	public void setMuscleGroup(String muscleGroup) {
+	public void setMuscleGroup(int muscleGroup) {
 		this.muscleGroup = muscleGroup;
 	}
 

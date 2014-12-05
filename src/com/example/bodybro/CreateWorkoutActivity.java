@@ -1,10 +1,19 @@
 package com.example.bodybro;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,317 +21,140 @@ import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.ScaleAnimation;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class CreateWorkoutActivity extends Activity {
-	//list of workouts located on the screen
-	List<Workout> workoutList;
-	CreateWorkoutListAdapter listViewAdapter;
+	//list of workouts located on the screen	
 	ListView listView;
+	List<Workout> workoutList;
+	List<MuscleItem> muscleList;
 	
-	//layout for dropdown
-	private LinearLayout Musclelayout;
+	//this will be used to filter by workoutType
+	String filterByWorkoutType = null;
+	String[] dropdownItems = {"Choose a Muscle Group","Arms", "Legs", "Chest", "Back", "Body Weight"};
+	ParseUser currentUser;
+	ParseObject addWorkout = new ParseObject("History");
 	
-	//textview holding title 
-	private TextView DropDownMuscleM;
+	@Override
+	protected void onResume() {
+		super.onResume();
+		
+		//pull the current user
+		currentUser = ParseUser.getCurrentUser();
 	
-	
+		//show who is logged in at top of screen
+//#		TextView tvLoggedInAs = (TextView) findViewById(R.id.text_view_history_logged_in_as);
+//#		tvLoggedInAs.setText("Logged in as: " + currentUser.getUsername());
+		
+		//create a parsequery for the history table then query for all the user's history
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("History");
+		query.whereEqualTo("user", currentUser.getUsername());
+		
+		//if filterByWorkoutType is null then we do not want to filter out any of the workout types
+		if(filterByWorkoutType != null) {
+			query.whereEqualTo("workoutType", filterByWorkoutType);
+		}
+		
+		//go make the query
+		query.findInBackground(new FindCallback<ParseObject>() {
+		    public void done(List<ParseObject> scoreList, ParseException e) {
+		        if (e == null) {
+		           //wipe out the historyList for a new list about to come
+		        	workoutList = new ArrayList<Workout>();
+		           //it worked, now add all of the history data into historyItem objects then put them in a list
+		           for (ParseObject obj : scoreList) {
+		        	   //pull info from database
+		        	   String name = obj.getString("user");
+		        	   Date date = obj.getUpdatedAt();
+		        	   int workoutType = obj.getInt("workoutType");
+		        	   String workoutExercise = obj.getString("exercise");
+		        	   String workoutWeight = obj.getString("weight");
+		        	   String workoutReps = obj.getString("reps");
+		        	   
+		        	   //make history item out of the info then place it in a list
+		        	   Workout newHistoryItem = new Workout( workoutType, workoutExercise,workoutWeight,workoutReps);
+		        	   workoutList.add(newHistoryItem);
+		           }
+		           
+			   		//now populate the list on this activity
+			   		ListView historyListView = (ListView) findViewById(R.id.list_view_create_workout);
+			   		//clean out the list adapter in case there are leftover items in it
+			   		historyListView.setAdapter(null);
+			   		//setup the adapter to tell the listview HOW to list the information
+			   		CreateWorkoutListAdapter historyListViewAdapter = new CreateWorkoutListAdapter(CreateWorkoutActivity.this, R.layout.list_view_create_workout, workoutList);
+			   		//attach the adapter to the listview so that it is drawn to the screen
+			   		historyListView.setAdapter(historyListViewAdapter);
+		        } else {
+		        	//something screwed up
+		            Toast.makeText(CreateWorkoutActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
+		        }
+		    }
+		});
+	}
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_create_workout);
+		//spinner is the dropdown box
+		Spinner dropdownBox = (Spinner) findViewById(R.id.dropdown_muscle_group);
+		//basic adapter to make the dropdown box list things correctly
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, dropdownItems);
+		//attaching adapter to the spinner
+		dropdownBox.setAdapter(adapter);
 		
-		
-		
-		//list view
-		listView = (ListView) findViewById(R.id.list_view_create_workout);
-		workoutList = new ArrayList<Workout>();
+		//logic for dropdown box
+		dropdownBox.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view,
+					int position, long id) {
+				
+				//if position = 0 then user has selected All which means we need to not filter
+				if (position != 0) {
+					//set filter by to whatever the array has for this position
+					filterByWorkoutType = dropdownItems[position].toLowerCase();
+				} else {
+					filterByWorkoutType = null;
+				}
+				
+				//refresh the activity
+				onResume();
+				
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				//if nothing selected then we want to not filter by anything
+				filterByWorkoutType = null;
+			}
+		});
 		
-		Musclelayout = ((LinearLayout)findViewById(R.id.dropdown_foldout_menu));
-		DropDownMuscleM = ((TextView)findViewById(R.id.dropdown_textview));
-		
-		
-		final TextView DropdownText = (TextView)findViewById(R.id.dropdown_textview);
-		final TextView drop_downselect_Chest = (TextView)findViewById(R.id.dropdown_Chest);
-		final TextView drop_downselect_Back = (TextView)findViewById(R.id.dropdown_Back);
-		final TextView drop_downselect_Shoulders = (TextView)findViewById(R.id.dropdown_Shoulders);
-		final TextView drop_downselect_Legs = (TextView)findViewById(R.id.dropdown_Legs);
-		final TextView drop_downselect_Arms = (TextView)findViewById(R.id.dropdown_Arms);
-		final TextView drop_downselect_Body_W = (TextView)findViewById(R.id.dropdown_BodyW);
-		
-		DropdownText.setOnClickListener(new OnClickListener() {
+		Button btnDone = (Button) findViewById(R.id.button_done);
+		btnDone.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				if (Musclelayout.getVisibility() == View.GONE)
-				{
-					openDropdown();
-				}
-				else{
-					closeDropdown();
-				}
+				startActivity(new Intent(CreateWorkoutActivity.this, MainActivity.class));
 			}
 		});
-		drop_downselect_Chest.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-                DropdownText.setText(R.string.drop_downselect_Chest);
-                closeDropdown(); 
-                drop_downselect_Chest.setCompoundDrawablesWithIntrinsicBounds(0, 0,
-                        R.drawable.icn_dropdown_checked, 0);
-                drop_downselect_Shoulders.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                drop_downselect_Back.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                drop_downselect_Legs.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                drop_downselect_Arms.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                drop_downselect_Body_W.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                
-    				//add a new workout to the list
-    				Workout workout = new Workout("Chest", "Bench", "3", "100");
-    				workoutList.add(workout);
-    				
-    				//setup the adapter to create the list view
-    				listViewAdapter = new CreateWorkoutListAdapter(CreateWorkoutActivity.this, R.layout.list_view_create_workout, workoutList);
-    				
-    				//notify that the list has been changed
-    				listViewAdapter.notifyDataSetChanged();
-    				
-    				//set the adapter to the list view on the UI
-    				listView.setAdapter(listViewAdapter);   
-                
-                
-                Toast.makeText(getBaseContext(), R.string.drop_downselect_Chest, Toast.LENGTH_SHORT).show();
-                
-			}
-		});
-		
-		drop_downselect_Shoulders.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-                DropdownText.setText(R.string.drop_downselect_Shoulders);
-                closeDropdown(); 
-                drop_downselect_Shoulders.setCompoundDrawablesWithIntrinsicBounds(0, 0,
-                        R.drawable.icn_dropdown_checked, 0);
-                drop_downselect_Back.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                drop_downselect_Chest.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                drop_downselect_Legs.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                drop_downselect_Arms.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                drop_downselect_Body_W.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                
-				//add a new workout to the list
-				Workout workout = new Workout("Chest", "Bench", "3", "100");
-				workoutList.add(workout);
-				
-				//setup the adapter to create the list view
-				listViewAdapter = new CreateWorkoutListAdapter(CreateWorkoutActivity.this, R.layout.list_view_create_workout, workoutList);
-				
-				//notify that the list has been changed
-				listViewAdapter.notifyDataSetChanged();
-				
-				//set the adapter to the list view on the UI
-				listView.setAdapter(listViewAdapter); 
-                
-                
-                
-                Toast.makeText(getBaseContext(), R.string.drop_downselect_Shoulders, Toast.LENGTH_SHORT).show();				
-			}
-		});
-		drop_downselect_Legs.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-                DropdownText.setText(R.string.drop_downselect_Legs);
-                closeDropdown(); 
-                drop_downselect_Legs.setCompoundDrawablesWithIntrinsicBounds(0, 0,
-                        R.drawable.icn_dropdown_checked, 0);
-                drop_downselect_Shoulders.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                drop_downselect_Chest.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                drop_downselect_Back.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                drop_downselect_Arms.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                drop_downselect_Body_W.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                
-				//add a new workout to the list
-				Workout workout = new Workout("Chest", "Bench", "3", "100");
-				workoutList.add(workout);
-				
-				//setup the adapter to create the list view
-				listViewAdapter = new CreateWorkoutListAdapter(CreateWorkoutActivity.this, R.layout.list_view_create_workout, workoutList);
-				
-				//notify that the list has been changed
-				listViewAdapter.notifyDataSetChanged();
-				
-				//set the adapter to the list view on the UI
-				listView.setAdapter(listViewAdapter); 
-                
-                
-                
-                Toast.makeText(getBaseContext(), R.string.drop_downselect_Legs, Toast.LENGTH_SHORT).show();				
-			}
-		});
-		drop_downselect_Arms.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-                DropdownText.setText(R.string.drop_downselect_Arms);
-                closeDropdown(); 
-                drop_downselect_Arms.setCompoundDrawablesWithIntrinsicBounds(0, 0,
-                        R.drawable.icn_dropdown_checked, 0);
-                drop_downselect_Shoulders.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                drop_downselect_Chest.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                drop_downselect_Legs.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                drop_downselect_Back.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                drop_downselect_Body_W.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                
-                
-				//add a new workout to the list
-				Workout workout = new Workout("Chest", "Bench", "3", "100");
-				workoutList.add(workout);
-				
-				//setup the adapter to create the list view
-				listViewAdapter = new CreateWorkoutListAdapter(CreateWorkoutActivity.this, R.layout.list_view_create_workout, workoutList);
-				
-				//notify that the list has been changed
-				listViewAdapter.notifyDataSetChanged();
-				
-				//set the adapter to the list view on the UI
-				listView.setAdapter(listViewAdapter); 
-                
-                
-                Toast.makeText(getBaseContext(), R.string.drop_downselect_Arms, Toast.LENGTH_SHORT).show();				
-			}
-		});
-		drop_downselect_Body_W.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-                DropdownText.setText(R.string.drop_downselect_Body_W);
-                closeDropdown(); 
-                drop_downselect_Body_W.setCompoundDrawablesWithIntrinsicBounds(0, 0,
-                        R.drawable.icn_dropdown_checked, 0);
-                drop_downselect_Shoulders.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                drop_downselect_Chest.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                drop_downselect_Legs.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                drop_downselect_Arms.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                drop_downselect_Back.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                
-                
-                
-                
-				//add a new workout to the list
-				Workout workout = new Workout("Chest", "Bench", "3", "100");
-				workoutList.add(workout);
-				
-				//setup the adapter to create the list view
-				listViewAdapter = new CreateWorkoutListAdapter(CreateWorkoutActivity.this, R.layout.list_view_create_workout, workoutList);
-				
-				//notify that the list has been changed
-				listViewAdapter.notifyDataSetChanged();
-				
-				//set the adapter to the list view on the UI
-				listView.setAdapter(listViewAdapter); 
-                Toast.makeText(getBaseContext(), R.string.drop_downselect_Body_W, Toast.LENGTH_SHORT).show();				
-			}
-		});
-		drop_downselect_Back.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-                DropdownText.setText(R.string.drop_downselect_Back);
-                closeDropdown(); 
-                drop_downselect_Back.setCompoundDrawablesWithIntrinsicBounds(0, 0,
-                        R.drawable.icn_dropdown_checked, 0);
-                drop_downselect_Shoulders.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                drop_downselect_Chest.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                drop_downselect_Legs.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                drop_downselect_Arms.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                drop_downselect_Body_W.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                
-                
-                
-				//add a new workout to the list
-				Workout workout = new Workout("Chest", "Bench", "3", "100");
-				workoutList.add(workout);
-				
-				//setup the adapter to create the list view
-				listViewAdapter = new CreateWorkoutListAdapter(CreateWorkoutActivity.this, R.layout.list_view_create_workout, workoutList);
-				
-				//notify that the list has been changed
-				listViewAdapter.notifyDataSetChanged();
-				
-				//set the adapter to the list view on the UI
-				listView.setAdapter(listViewAdapter); 
-                Toast.makeText(getBaseContext(), R.string.drop_downselect_Back, Toast.LENGTH_SHORT).show();				
-			}
-		});
-
-		
-		
-		
-
-		
-//		//initialize the new row button
-//		Button buttonNewRow = (Button) findViewById(R.id.button_new_row);
-//		buttonNewRow.setOnClickListener(new View.OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View v) {
-//				//add a new workout to the list
-//				Workout workout = new Workout("Chest", "Bench", "3", "100");
-//				workoutList.add(workout);
-//				
-//				//setup the adapter to create the list view
-//				listViewAdapter = new CreateWorkoutListAdapter(CreateWorkoutActivity.this, R.layout.list_view_create_workout, workoutList);
-//				
-//				//notify that the list has been changed
-//				listViewAdapter.notifyDataSetChanged();
-//				
-//				//set the adapter to the list view on the UI
-//				listView.setAdapter(listViewAdapter);
-//			}
-//		});
-	}
-
-	//animate out droplist
-	protected void closeDropdown() {
-        if (Musclelayout.getVisibility() == View.VISIBLE) {
-            ScaleAnimation anim = new ScaleAnimation(1, 1, 1, 0);
-            anim.setDuration(getResources().getInteger(R.integer.dropdown_amination_time));
-            anim.setAnimationListener(new AnimationListener() {
-                @Override 
-                public void onAnimationStart(Animation animation) {
-                } 
- 
- 
-                @Override 
-                public void onAnimationRepeat(Animation animation) {
-                } 
- 
- 
-                @Override 
-                public void onAnimationEnd(Animation animation) {
-                    Musclelayout.setVisibility(View.GONE);
-                } 
-            }); 
-            DropDownMuscleM.setCompoundDrawablesWithIntrinsicBounds(0, 0,
-                    R.drawable.icn_dropdown_open, 0);
-            Musclelayout.startAnimation(anim);
-        } 
-    } 
-	
-
-//animate in drop downlist
-	protected void openDropdown() {
-        if (Musclelayout.getVisibility() != View.VISIBLE) {
-            ScaleAnimation anim = new ScaleAnimation(1, 1, 0, 1);
-            anim.setDuration(getResources().getInteger(R.integer.dropdown_amination_time));
-            Musclelayout.startAnimation(anim);
-            DropDownMuscleM.setCompoundDrawablesWithIntrinsicBounds(0, 0,
-                    R.drawable.icn_dropdown_close, 0);
-            Musclelayout.setVisibility(View.VISIBLE);
-        } 
 		
 	}
-	
-	
 }
+
+	
+
+
+
+	
+	
+
