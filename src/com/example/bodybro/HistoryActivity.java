@@ -112,7 +112,7 @@ public class HistoryActivity extends Activity {
 				//if position = 0 then user has selected All which means we need to not filter
 				if (position != 0) {
 					//set filter by to whatever the array has for this position
-					filterByWorkoutType = dropdownItems[position].toLowerCase();
+					filterByWorkoutType = dropdownItems[position].toString();
 				} else {
 					filterByWorkoutType = null;
 				}
