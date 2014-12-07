@@ -25,7 +25,7 @@
     <string name="label_button_create_workout">Create Workout</string>
     <string name="title_activity_create_workout">CreateWorkoutActivity</string>
     <string name="label_text_view_create_workout_title">Create a Workout!</string>
-    <string name="label_button_new_row">Add a New Row</string>
+    <string name="label_button_Submit_New">Submit Custom Workout</string>
     <string name="title_activity_history">HistoryActivity</string>
     <string name="label_button_organize">Organize</string>
     <string name="label_button_done">Done</string>
@@ -50,5 +50,16 @@
 	<string name="drop_downselect_Legs">Legs</string>
 	<string name="drop_downselect_Arms">Arms</string>
 	<string name="drop_downselect_Body_W">Body Weight</string>
+	 <string name="Exercise_prompt">Choose a Exercise</string>
+    <string name="Muscle_prompt">Choose a Muscle Group</string>
+    <string-array name="Muscle_Group">
+        <item>Arms</item>
+        <item>Shoulders</item>
+        <item>Legs</item>
+        <item>Chest</item>
+        <item>Back</item>
+        <item>Body Weight</item>
+        </string-array>
+
 
 </resources>

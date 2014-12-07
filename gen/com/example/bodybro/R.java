@@ -8,6 +8,9 @@
 package com.example.bodybro;
 
 public final class R {
+    public static final class array {
+        public static final int Muscle_Group=0x7f070000;
+    }
     public static final class attr {
     }
     public static final class color {
@@ -23,41 +26,44 @@ public final class R {
         public static final int icn_dropdown_open=0x7f020005;
     }
     public static final class id {
-        public static final int button_arms=0x7f080011;
-        public static final int button_back=0x7f08000e;
-        public static final int button_body_weight=0x7f080012;
-        public static final int button_chest=0x7f08000d;
-        public static final int button_create_workout=0x7f080013;
-        public static final int button_done=0x7f080000;
-        public static final int button_finish=0x7f080014;
-        public static final int button_history=0x7f08000c;
-        public static final int button_history_specific_group=0x7f08001a;
-        public static final int button_legs=0x7f080010;
-        public static final int button_login=0x7f080008;
-        public static final int button_randomize_workout=0x7f080019;
-        public static final int button_shoulders=0x7f08000f;
-        public static final int button_to_register=0x7f080009;
-        public static final int button_use_workout=0x7f08001f;
-        public static final int button_workout=0x7f08000a;
-        public static final int dropdown_muscle_group=0x7f080002;
-        public static final int editText3=0x7f080017;
-        public static final int edit_text_list_view_create_exersize=0x7f08001c;
-        public static final int edit_text_list_view_create_reps=0x7f08001e;
-        public static final int edit_text_list_view_create_weight=0x7f08001d;
-        public static final int edit_text_password=0x7f080006;
-        public static final int edit_text_register_password=0x7f080016;
-        public static final int edit_text_register_username=0x7f080015;
-        public static final int edit_text_username=0x7f080007;
-        public static final int list_view_create_workout=0x7f080001;
-        public static final int list_view_history=0x7f080003;
-        public static final int text_view_history_date=0x7f080020;
-        public static final int text_view_history_logged_in_as=0x7f080005;
-        public static final int text_view_history_workout_exercise=0x7f080022;
-        public static final int text_view_history_workout_type=0x7f080021;
-        public static final int text_view_list_view_workout_type=0x7f08001b;
-        public static final int text_view_specific_group=0x7f080018;
-        public static final int text_view_username=0x7f08000b;
-        public static final int textview_filter_history_label=0x7f080004;
+        public static final int Exercise_prompt=0x7f090003;
+        public static final int Label_Text_Muscle=0x7f090000;
+        public static final int Label_Text_Muscle1=0x7f090001;
+        public static final int MuscleType=0x7f090002;
+        public static final int WorkOutType=0x7f090004;
+        public static final int button_arms=0x7f090018;
+        public static final int button_back=0x7f090015;
+        public static final int button_body_weight=0x7f090019;
+        public static final int button_chest=0x7f090014;
+        public static final int button_create_workout=0x7f09001a;
+        public static final int button_done=0x7f090008;
+        public static final int button_finish=0x7f09001b;
+        public static final int button_history=0x7f090013;
+        public static final int button_history_specific_group=0x7f090021;
+        public static final int button_legs=0x7f090017;
+        public static final int button_login=0x7f09000f;
+        public static final int button_randomize_workout=0x7f090020;
+        public static final int button_shoulders=0x7f090016;
+        public static final int button_to_register=0x7f090010;
+        public static final int button_use_workout=0x7f090022;
+        public static final int button_workout=0x7f090011;
+        public static final int dropdown_muscle_group=0x7f09000a;
+        public static final int editText3=0x7f09001e;
+        public static final int edit_text_list_view_create_reps=0x7f090005;
+        public static final int edit_text_list_view_create_weight=0x7f090006;
+        public static final int edit_text_password=0x7f09000d;
+        public static final int edit_text_register_password=0x7f09001d;
+        public static final int edit_text_register_username=0x7f09001c;
+        public static final int edit_text_username=0x7f09000e;
+        public static final int label_button_Submit_New=0x7f090007;
+        public static final int list_view_history=0x7f090009;
+        public static final int text_view_history_date=0x7f090023;
+        public static final int text_view_history_logged_in_as=0x7f09000c;
+        public static final int text_view_history_workout_exercise=0x7f090025;
+        public static final int text_view_history_workout_type=0x7f090024;
+        public static final int text_view_specific_group=0x7f09001f;
+        public static final int text_view_username=0x7f090012;
+        public static final int textview_filter_history_label=0x7f09000b;
     }
     public static final class integer {
         /**  determin how long it takes for the dropdown to animate in/out 
@@ -73,10 +79,11 @@ public final class R {
         public static final int activity_register=0x7f030005;
         public static final int activity_specific_muscle_group=0x7f030006;
         public static final int activity_splash_screen=0x7f030007;
-        public static final int list_view_create_workout=0x7f030008;
-        public static final int list_view_history_component=0x7f030009;
+        public static final int list_view_history_component=0x7f030008;
     }
     public static final class string {
+        public static final int Exercise_prompt=0x7f060030;
+        public static final int Muscle_prompt=0x7f060031;
         public static final int app_name=0x7f060000;
         public static final int drop_downselect=0x7f060029;
         public static final int drop_downselect_Arms=0x7f06002e;
@@ -88,6 +95,7 @@ public final class R {
         public static final int hello_world=0x7f060001;
         public static final int hint_password=0x7f06001f;
         public static final int hint_password_confirm=0x7f060024;
+        public static final int label_button_Submit_New=0x7f060017;
         public static final int label_button_arms=0x7f06000d;
         public static final int label_button_back=0x7f06000a;
         public static final int label_button_body_weight=0x7f06000e;
@@ -99,7 +107,6 @@ public final class R {
         public static final int label_button_history_chest=0x7f060011;
         public static final int label_button_legs=0x7f06000c;
         public static final int label_button_login=0x7f060020;
-        public static final int label_button_new_row=0x7f060017;
         public static final int label_button_organize=0x7f060019;
         public static final int label_button_randomize_workout=0x7f060010;
         public static final int label_button_settings=0x7f060007;
@@ -148,10 +155,10 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f070001;
+        public static final int AppTheme=0x7f080001;
     }
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.example.bodybro.R.string;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -14,15 +15,19 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.ScaleAnimation;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -31,168 +36,233 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CreateWorkoutActivity extends Activity {
-	//list of workouts located on the screen	
-	ListView listView;
-	List<Workout> workoutList;
-	
-	//this will be used to filter by workoutType
-	String filterByWorkoutType = null;
-	String[] dropdownItems = {"Choose a Muscle Group","Arms", "Legs", "Chest", "Back", "Body Weight"};
-	ParseUser currentUser;
-	ParseObject addWorkout = new ParseObject("Exercises");
-	
-	@Override
-	protected void onResume() {
-		super.onResume();
-		
-		//pull the current user
-		currentUser = ParseUser.getCurrentUser();
-	
-		//show who is logged in at top of screen
-//#		TextView tvLoggedInAs = (TextView) findViewById(R.id.text_view_history_logged_in_as);
-//#		tvLoggedInAs.setText("Logged in as: " + currentUser.getUsername());
-		
-		//create a parsequery for the history table then query for all the user's history
-		ParseQuery<ParseObject> query = ParseQuery.getQuery("Exercises");
-		query.whereEqualTo("muscleGroup", currentUser.getUsername());
-		
-//		//if filterByWorkoutType is null then we do not want to filter out any of the workout types
-//		if(filterByWorkoutType != null) {
-//			query.whereEqualTo("workoutType", filterByWorkoutType);
-//		}
-//		
-//		//go make the query
-//		query.findInBackground(new FindCallback<ParseObject>() {
-//		    public void done(List<ParseObject> scoreList, ParseException e) {
-//		        if (e == null) {
-//		           //wipe out the historyList for a new list about to come
-//		        	workoutList = new ArrayList<Workout>();
-//		           //it worked, now add all of the history data into historyItem objects then put them in a list
-//		           for (ParseObject obj : scoreList) {
-////		        	   //pull info from database
-////		        	   String name = obj.getString("user");
-////		        	   Date date = obj.getUpdatedAt();
-////		        	   int workoutType = obj.getInt("workoutType");
-////		        	   String workoutExercise = obj.getString("exercise");
-////		        	   String workoutWeight = obj.getString("weight");
-////		        	   String workoutReps = obj.getString("reps");
-		        	   
-		        	  
-//		        	   int workoutType = 1 ;
-//		        	   String workoutExercise="exersize" ;
-//		        	   String workoutWeight= "weight";
-//		        	   String workoutReps="reps";
-//		        	   
-//		        	   //make work item out of the info then place it in a list
-//		        	   Workout newWorkItem = new Workout( workoutType, workoutExercise,workoutWeight,workoutReps);
-//		        	   workoutList.add(newWorkItem);
-//	           }
-		           
-//			   		//now populate the list on this activity
-//			   		ListView historyListView = (ListView) findViewById(R.id.list_view_create_workout);
-//			   		//clean out the list adapter in case there are leftover items in it
-//			   		historyListView.setAdapter(null);
-//			   		//setup the adapter to tell the listview HOW to list the information
-//			   		CreateWorkoutListAdapter historyListViewAdapter = new CreateWorkoutListAdapter(CreateWorkoutActivity.this, R.layout.list_view_create_workout, workoutList);
-//			   		//attach the adapter to the listview so that it is drawn to the screen
-//			   		historyListView.setAdapter(historyListViewAdapter);
-//		        } 
-//else {
-		        	//something screwed up
-//	            Toast.makeText(CreateWorkoutActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
-//		        }
-//		    }
-//		});
-	}
+public class CreateWorkoutActivity extends Activity implements OnItemSelectedListener{
+    	Spinner MuscleGroupSpin,ExerciseSpin;
+   	 ParseUser currentUser;
 
+    	@Override	    
+    	    protected void onCreate(Bundle savedInstanceState) {
+    	        // TODO Auto-generated method stub
+    	        super.onCreate(savedInstanceState);
+    	        setContentView(R.layout.activity_create_workout);
+    	        MuscleGroupSpin = (Spinner)findViewById(R.id.MuscleType);
+    	        ExerciseSpin= (Spinner)findViewById(R.id.WorkOutType);
+    	        MuscleGroupSpin.setOnItemSelectedListener(this);  
+    	        
+  	    
+        		//pull the current user
+        		currentUser = ParseUser.getCurrentUser();
+    	        
 
-	
-	
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_create_workout);
-		//spinner is the dropdown box
-		Spinner dropdownBox = (Spinner) findViewById(R.id.dropdown_muscle_group);
-		//basic adapter to make the dropdown box list things correctly
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, dropdownItems);
-		//attaching adapter to the spinner
-		dropdownBox.setAdapter(adapter);
-		
-		//logic for dropdown box
-		dropdownBox.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+    	        
+    			Button btnSave = (Button) findViewById(R.id.label_button_Submit_New);
+    			btnSave.setOnClickListener(new View.OnClickListener() {
+    				
+    				@Override
+    				public void onClick(View v) {
+    	    	        
+    	    	        EditText repsInput = (EditText) findViewById(R.id.edit_text_list_view_create_reps);
+    	    	        EditText weightInput = (EditText) findViewById(R.id.edit_text_list_view_create_weight);
 
-			@Override
-			public void onItemSelected(AdapterView<?> parent, View view,
-					int position, long id) {
-				
-				//if position = 0 then user has selected All which means we need to not filter
-				if (position != 0) {
-					//set filter by to whatever the array has for this position
-					filterByWorkoutType = dropdownItems[position].toLowerCase();
-					
-					
-					
-					workoutList = new ArrayList<Workout>();
-					   int workoutType = position ;
-					   String workoutExercise="1" ;
-					   String workoutWeight= "1";
-					   String workoutReps="1";
-					   
-					   //make work item out of the info then place it in a list
-					   Workout newWorkItem = new Workout( workoutType, workoutExercise,workoutReps,workoutWeight);
-					   workoutList.add(newWorkItem);
-						//now populate the list on this activity
-						ListView historyListView = (ListView) findViewById(R.id.list_view_create_workout);
-						//clean out the list adapter in case there are leftover items in it
-						historyListView.setAdapter(null);
-						//setup the adapter to tell the listview HOW to list the information
-						CreateWorkoutListAdapter historyListViewAdapter = new CreateWorkoutListAdapter(CreateWorkoutActivity.this, R.layout.list_view_create_workout, workoutList);
-						//attach the adapter to the listview so that it is drawn to the screen
-						historyListView.setAdapter(historyListViewAdapter);
-					
-	
-				} else {
-					filterByWorkoutType = null;
-				}
-				
-				//refresh the activity
-				onResume();
-				
-			}
+    	    	         String RepsInput = repsInput.getText().toString();
+    	    	         String WeightInput = weightInput.getText().toString();
+
+    					startActivity(new Intent(CreateWorkoutActivity.this, MainActivity.class));
+    					
+    					ParseObject CustomWorkOut = new ParseObject("History");
+    					//CustomWorkOut.put("user",currentUser);		
+    					//CustomWorkOut.put("workoutType", MuscleGroupSpin);
+    					CustomWorkOut.put("weight", WeightInput);
+    					CustomWorkOut.put("reps", RepsInput);
+    					//CustomWorkOut.put("exercise", ExerciseSpin);
+    					CustomWorkOut.saveInBackground();
+    				}
+    			});
+    	        
+    	        
+    	        
+    	    }
+    	    @Override
+    	    public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
+    	            long arg3) {
+    	        // TODO Auto-generated method stub
+    	        String MuscleSpin= String.valueOf(MuscleGroupSpin.getSelectedItem());
+    	        Toast.makeText(this, MuscleSpin, Toast.LENGTH_SHORT).show();
+    	        if(MuscleSpin.contentEquals("Arms")) {
+    	            List<String> list = new ArrayList<String>();
+
+    	            list.add("Barbell Bicep Drag Curl");
+    	            list.add("Barbell Curl");
+    	            list.add("Dumbbell Alternate Bicep Curl");
+    	            list.add("Dumbbell Alternate Hammer Curl");
+    	            list.add("Bench Dip");
+    	            list.add("Dumbbell Decline Triceps Extension");
+    	            list.add("Barbell Reverse Curl");
+    	            list.add("Dumbbell Spider Curl");
+    	            list.add("Dumbbell Zottman Curl");
+    	            list.add("EZ Bar Decline Close Grip Skull Crusher");
+    	            list.add("Dumbbell Standing Triceps Extension");
+    	            list.add("Dumbbell Tricep Kickbacks");
+
+    	            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+    	                android.R.layout.simple_spinner_item, list);
+    	            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    	            dataAdapter.notifyDataSetChanged();
+    	            ExerciseSpin.setAdapter(dataAdapter);
+    	        }
+    	        if(MuscleSpin.contentEquals("Legs")) {
+    	        	List<String> list = new ArrayList<String>();
+    	        	list.add("Barbell Deep Squat");
+    	        	list.add("Barbell Front Squat");
+    	        	list.add("Barbell Squat");
+    	        	list.add("Barbell Zercher Squat");
+    	        	list.add("Lunge");
+    	        	list.add("Dumbbell Jumping Squats");
+    	        	list.add("Seated One Leg Calf Raise");
+    	        	list.add("Standing Calf Raises");
+    	        	list.add("Mountain Climbers");
+    	        	list.add("Kettlebell Goblet Squats");
+    	        	list.add("Dumbbell Squat");
+    	        	list.add("Dumbbell Rear Lunge");
+    	        	list.add("Barbell Split Jump");
+
+    	            ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this,
+    	                android.R.layout.simple_spinner_item, list);
+    	            dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    	            dataAdapter2.notifyDataSetChanged();
+    	            ExerciseSpin.setAdapter(dataAdapter2);
+    	        }
+    	        if(MuscleSpin.contentEquals("Shoulders")) {
+    	            List<String> list = new ArrayList<String>();
+
+    	            list.add("Barbell Incline Shoulder Raise");
+    	            list.add("Barbell Standing Military Press");
+    	            list.add("Dumbbell Alternate Seated Arnold Press");
+    	            list.add("Dumbbell Double Incline Shoulder Raise");
+    	            list.add("Dumbbell Front Two Raise");
+    	            list.add("Dumbbell Lying Rear Delt Raise");
+    	            list.add("Weight Plate Shrugs");
+    	            list.add("Dumbbell Standing Press");
+    	            list.add("Dumbbell Shoulder Shrug");
+    	            list.add("Dumbbell Standing Alternate Front Raise");
+    	            list.add("Dumbbell Seated Dublin Press");
+    	            list.add("Dumbbell Seated Side Lateral Raise");
+    	            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+    	                android.R.layout.simple_spinner_item, list);
+    	            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    	            dataAdapter.notifyDataSetChanged();
+    	            ExerciseSpin.setAdapter(dataAdapter);
+    	        }
+    	        if(MuscleSpin.contentEquals("Chest")) {
+    	            List<String> list = new ArrayList<String>();
+    	            list.add("Barbell Bench Press");
+    	            list.add("Barbell Decline Bench Press");
+    	            list.add("Barbell Incline Bench Press");
+    	            list.add("Bench Pushups");
+    	            list.add("Barbell Decline Pullover");
+    	            list.add("Butterfly");
+    	            list.add("Barbell Neck Press");
+    	            list.add("Barbell Wide Grip Bench Press");
+    	            list.add("Dumbbell Decline Fly");
+    	            list.add("Dumbbell Bench Press");
+    	            list.add("Dumbbell Decline Press");
+    	            list.add("Dumbbell Incline Press");
+    	            ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this,
+    	                android.R.layout.simple_spinner_item, list);
+    	            dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    	            dataAdapter2.notifyDataSetChanged();
+    	            ExerciseSpin.setAdapter(dataAdapter2);
+    	        }
+    	        if(MuscleSpin.contentEquals("Back")) {
+    	        	List<String> list = new ArrayList<String>();
+    	        	list.add("Barbell Bent Over Row");
+    	        	list.add("Barbell Deadlift");
+    	        	list.add("Barbell Good Morning");
+    	        	list.add("Barbell Lying Cambered Row");
+    	        	list.add("Pull Ups");
+    	        	list.add("Reverse Grip Lat Pull Down");
+    	        	list.add("Dumbbell Bent Over Row");
+    	        	list.add("Dumbbell Deadlift");
+    	        	list.add("Dumbbell One Arm Row");
+    	        	list.add("Gorilla Chin Up with Crunch");
+    	        	list.add("Kettlebell One Arm Row");
+    	        	list.add("Wide Grip Rear Pull Ups");
+    	        	list.add("Wide Grip Lat Pulldowns");
+
+    	            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+    	                android.R.layout.simple_spinner_item, list);
+    	            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    	            dataAdapter.notifyDataSetChanged();
+    	            ExerciseSpin.setAdapter(dataAdapter);
+    	        }
+    	        if(MuscleSpin.contentEquals("Body Weight")) {
+    	            List<String> list = new ArrayList<String>();
+    	            list.add("Conveyance");
+    	            list.add("Breakfast");
+    	            list.add("Crunches");
+    	            list.add("Plank");
+    	            list.add("Close Hand Pushup");
+    	            list.add("Wide Hand Pushup");
+    	            list.add("Handstand Pushups");
+    	            list.add("Close Triceps Pushup");
+    	            list.add("Freehand Jump Squat");
+    	            list.add("1 Leg Pushup");
+    	            list.add("Mountain Climbers");
+    	            list.add("V Ups");
+    	            list.add("Twisting Floor Crunch");
+    	            list.add("Toe Touchers");
+
+    	            ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this,
+    	                android.R.layout.simple_spinner_item, list);
+    	            dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    	            dataAdapter2.notifyDataSetChanged();
+    	            ExerciseSpin.setAdapter(dataAdapter2);
+    	        }
+    	    }
 
 			@Override
 			public void onNothingSelected(AdapterView<?> parent) {
 				//if nothing selected then we want to not filter by anything
-				filterByWorkoutType = null;
 			}
-		});
-		
-		Button btnDone = (Button) findViewById(R.id.button_done);
-		btnDone.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				//add to parsehistory page
-				ParseObject addCustom = new ParseObject("History");
-//				addCustom.put("exercise", R.id.edit_text_list_view_create_exersize);
-//				addCustom.put("workoutType", R.id.text_view_list_view_workout_type);
-//				addCustom.put("reps", R.id.edit_text_list_view_create_reps);
-//				addCustom.put("weight", R.id.edit_text_list_view_create_weight);
-				addCustom.saveInBackground();
 
-				startActivity(new Intent(CreateWorkoutActivity.this, MainActivity.class));
-			}
-		});
+
 		
 	}
-}
-
-	
 
 
+    
+    
 
-	
-	
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
