@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.example.bodybro.R.string;
 import com.parse.FindCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -40,11 +41,17 @@ public class CreateWorkoutActivity extends Activity implements OnItemSelectedLis
     	Spinner MuscleGroupSpin,ExerciseSpin;
    	 ParseUser currentUser;
 
+    	private static final String TAG = CreateWorkoutActivity.class.getName();
+    	
     	@Override	    
     	    protected void onCreate(Bundle savedInstanceState) {
+    		
+    		//Parse.initialize(this, "05Bkc0xDEqMmdoXxvsGFodE8X55Ci3s1huL2yBh7", "uYz8u93WCYH509Zgc2GmOHd0VdnqE4ZHVCQsL85q");
+    		
     	        // TODO Auto-generated method stub
     	        super.onCreate(savedInstanceState);
     	        setContentView(R.layout.activity_create_workout);
+    	        //spinner objects
     	        MuscleGroupSpin = (Spinner)findViewById(R.id.MuscleType);
     	        ExerciseSpin= (Spinner)findViewById(R.id.WorkOutType);
     	        MuscleGroupSpin.setOnItemSelectedListener(this);  
@@ -52,43 +59,50 @@ public class CreateWorkoutActivity extends Activity implements OnItemSelectedLis
   	    
         		//pull the current user
         		currentUser = ParseUser.getCurrentUser();
-    	        
-
-    	        
+    	        //starting button when clicked  	        
     			Button btnSave = (Button) findViewById(R.id.label_button_Submit_New);
     			btnSave.setOnClickListener(new View.OnClickListener() {
     				
     				@Override
     				public void onClick(View v) {
-    	    	        
+    	    	        //make text from edit text to string 
     	    	        EditText repsInput = (EditText) findViewById(R.id.edit_text_list_view_create_reps);
     	    	        EditText weightInput = (EditText) findViewById(R.id.edit_text_list_view_create_weight);
-
-    	    	         String RepsInput = repsInput.getText().toString();
-    	    	         String WeightInput = weightInput.getText().toString();
-
+    	    	        String MuscleInput = MuscleGroupSpin.getSelectedItem().toString();
+    	    	        String ExerciseInput= ExerciseSpin.getSelectedItem().toString();
+    	    	        //tostring for push to parse
+    	    	         String WeightInput = repsInput.getText().toString();
+    	    	         String RepsInput  = weightInput.getText().toString();
+    	    	         //intent to back to main menu after published 
     					startActivity(new Intent(CreateWorkoutActivity.this, MainActivity.class));
-    					
+    					//push to parse objects
     					ParseObject CustomWorkOut = new ParseObject("History");
-    					//CustomWorkOut.put("user",currentUser);		
-    					//CustomWorkOut.put("workoutType", MuscleGroupSpin);
+    					CustomWorkOut.put("user",currentUser.getUsername());		
+    					CustomWorkOut.put("workoutType", MuscleInput);
+    					Log.d(TAG, "workout");   
     					CustomWorkOut.put("weight", WeightInput);
+    					Log.d(TAG, "weight");   
     					CustomWorkOut.put("reps", RepsInput);
-    					//CustomWorkOut.put("exercise", ExerciseSpin);
+    					Log.d(TAG, "reps");   
+    					CustomWorkOut.put("exercise", ExerciseInput);
+    					Log.d(TAG, "exercise");   
     					CustomWorkOut.saveInBackground();
+    					Log.d(TAG, "SAVE SUCCESSFUL");   
+    					
     				}
     			});
     	        
     	        
     	        
     	    }
-    	    @Override
+    	    @Override// item selected from drop down
     	    public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
     	            long arg3) {
     	        // TODO Auto-generated method stub
     	        String MuscleSpin= String.valueOf(MuscleGroupSpin.getSelectedItem());
     	        Toast.makeText(this, MuscleSpin, Toast.LENGTH_SHORT).show();
     	        if(MuscleSpin.contentEquals("Arms")) {
+    	        	//make array of list of items based on 1st spinner selections
     	            List<String> list = new ArrayList<String>();
 
     	            list.add("Barbell Bicep Drag Curl");
@@ -111,6 +125,8 @@ public class CreateWorkoutActivity extends Activity implements OnItemSelectedLis
     	            ExerciseSpin.setAdapter(dataAdapter);
     	        }
     	        if(MuscleSpin.contentEquals("Legs")) {
+    	        	//make array of list of items based on 1st spinner selections
+
     	        	List<String> list = new ArrayList<String>();
     	        	list.add("Barbell Deep Squat");
     	        	list.add("Barbell Front Squat");
@@ -133,6 +149,8 @@ public class CreateWorkoutActivity extends Activity implements OnItemSelectedLis
     	            ExerciseSpin.setAdapter(dataAdapter2);
     	        }
     	        if(MuscleSpin.contentEquals("Shoulders")) {
+    	        	//make array of list of items based on 1st spinner selections
+
     	            List<String> list = new ArrayList<String>();
 
     	            list.add("Barbell Incline Shoulder Raise");
@@ -154,6 +172,8 @@ public class CreateWorkoutActivity extends Activity implements OnItemSelectedLis
     	            ExerciseSpin.setAdapter(dataAdapter);
     	        }
     	        if(MuscleSpin.contentEquals("Chest")) {
+    	        	//make array of list of items based on 1st spinner selections
+
     	            List<String> list = new ArrayList<String>();
     	            list.add("Barbell Bench Press");
     	            list.add("Barbell Decline Bench Press");
@@ -174,6 +194,8 @@ public class CreateWorkoutActivity extends Activity implements OnItemSelectedLis
     	            ExerciseSpin.setAdapter(dataAdapter2);
     	        }
     	        if(MuscleSpin.contentEquals("Back")) {
+    	        	//make array of list of items based on 1st spinner selections
+
     	        	List<String> list = new ArrayList<String>();
     	        	list.add("Barbell Bent Over Row");
     	        	list.add("Barbell Deadlift");
@@ -196,6 +218,8 @@ public class CreateWorkoutActivity extends Activity implements OnItemSelectedLis
     	            ExerciseSpin.setAdapter(dataAdapter);
     	        }
     	        if(MuscleSpin.contentEquals("Body Weight")) {
+    	        	//make array of list of items based on 1st spinner selections
+
     	            List<String> list = new ArrayList<String>();
     	            list.add("Conveyance");
     	            list.add("Breakfast");

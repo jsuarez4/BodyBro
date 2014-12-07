@@ -49,8 +49,8 @@ public final class R {
         public static final int button_workout=0x7f090011;
         public static final int dropdown_muscle_group=0x7f09000a;
         public static final int editText3=0x7f09001e;
-        public static final int edit_text_list_view_create_reps=0x7f090005;
-        public static final int edit_text_list_view_create_weight=0x7f090006;
+        public static final int edit_text_list_view_create_reps=0x7f090006;
+        public static final int edit_text_list_view_create_weight=0x7f090005;
         public static final int edit_text_password=0x7f09000d;
         public static final int edit_text_register_password=0x7f09001d;
         public static final int edit_text_register_username=0x7f09001c;
