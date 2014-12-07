@@ -1,9 +1,8 @@
 package com.example.bodybro;
 
-import com.parse.Parse;
-import com.parse.ParseObject;
-
 import android.app.Application;
+
+import com.parse.Parse;
 
 public class ParseApplication extends Application{
 

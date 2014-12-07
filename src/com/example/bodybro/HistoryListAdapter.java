@@ -4,7 +4,6 @@ import java.util.List;
 
 import android.content.Context;
 import android.content.Intent;
-import android.sax.StartElementListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,15 +36,18 @@ public class HistoryListAdapter extends ArrayAdapter<HistoryItem>{
 		
 		//pull the use workout button which moves to the create workout activity class
 		Button btnUseWorkout = (Button) convertView.findViewById(R.id.button_use_workout);
+		btnUseWorkout.setTag(historyItem);
 		btnUseWorkout.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
-			public void onClick(View arg0) {
+			public void onClick(View v) {
 				//TODO: need to add extras to the intent so that we setup the create workout activity
 				//to reflect the history's workout
-				
+				HistoryItem historyItem = (HistoryItem) v.getTag();
 				//make an intent to go to the create workout activity
 				Intent intent = new Intent(context, CreateWorkoutActivity.class);
+				intent.putExtra("historyItem", historyItem);
+				
 				//start the create workout activity
 				context.startActivity(intent);
 			}

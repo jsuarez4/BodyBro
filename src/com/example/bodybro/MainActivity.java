@@ -1,17 +1,13 @@
 package com.example.bodybro;
 
-import com.parse.Parse;
-import com.parse.ParseObject;
-import com.parse.ParseUser;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.parse.ParseUser;
 
 public class MainActivity extends Activity {
 

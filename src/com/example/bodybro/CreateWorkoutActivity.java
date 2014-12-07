@@ -1,61 +1,64 @@
 package com.example.bodybro;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
-import com.example.bodybro.R.string;
-import com.parse.FindCallback;
-import com.parse.Parse;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
-import com.parse.ParseUser;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
-import android.view.animation.ScaleAnimation;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 public class CreateWorkoutActivity extends Activity implements OnItemSelectedListener{
     	Spinner MuscleGroupSpin,ExerciseSpin;
-   	 ParseUser currentUser;
+   	 	ParseUser currentUser;
+   	 	EditText etReps;
+   	 	EditText etWeight;
+   	 	ArrayList<String> muscleGroupArray;
+   	 	HistoryItem historyItem;
 
     	private static final String TAG = CreateWorkoutActivity.class.getName();
     	
     	@Override	    
     	    protected void onCreate(Bundle savedInstanceState) {
-    		
-    		//Parse.initialize(this, "05Bkc0xDEqMmdoXxvsGFodE8X55Ci3s1huL2yBh7", "uYz8u93WCYH509Zgc2GmOHd0VdnqE4ZHVCQsL85q");
-    		
-    	        // TODO Auto-generated method stub
     	        super.onCreate(savedInstanceState);
     	        setContentView(R.layout.activity_create_workout);
     	        //spinner objects
     	        MuscleGroupSpin = (Spinner)findViewById(R.id.MuscleType);
     	        ExerciseSpin= (Spinner)findViewById(R.id.WorkOutType);
     	        MuscleGroupSpin.setOnItemSelectedListener(this);  
+    	        etReps = (EditText) findViewById(R.id.edit_text_list_view_create_reps);
+    	        etWeight = (EditText) findViewById(R.id.edit_text_list_view_create_weight);
     	        
+    	        //if extra bundle is not null, then we need to handle incoming bundle from history
+    	        if (getIntent().getExtras() != null){
+    	        	//populate list to use for muscle group
+    	        	muscleGroupArray = new ArrayList<String>();
+    	        	muscleGroupArray.add("Arms");
+    	        	muscleGroupArray.add("Shoulders");
+    	        	muscleGroupArray.add("Legs");
+    	        	muscleGroupArray.add("Chest");
+    	        	muscleGroupArray.add("Back");
+    	        	muscleGroupArray.add("Body Weight");
+    	        	
+    	        	//strings to store data from incoming bundle
+    	        	historyItem = (HistoryItem) getIntent().getExtras().get("historyItem");
+    	        	
+    	        	//preset all the boxes and things to the bundle
+    	        	MuscleGroupSpin.setSelection(muscleGroupArray.indexOf(historyItem.getWorkoutType()));
+    	        	etReps.setText(historyItem.getReps());
+    	        	etWeight.setText(historyItem.getWeight());
+    	        }
   	    
         		//pull the current user
         		currentUser = ParseUser.getCurrentUser();
@@ -123,6 +126,14 @@ public class CreateWorkoutActivity extends Activity implements OnItemSelectedLis
     	            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     	            dataAdapter.notifyDataSetChanged();
     	            ExerciseSpin.setAdapter(dataAdapter);
+    	            
+    	            //if history item isn't null, then we have incoming history to deal with
+    	            if(historyItem != null){
+    	            	//if this list contains the exercise that is in historyItem, set selected to it.
+    	            	if (list.contains(historyItem.getWorkoutExercise())){
+    	            		ExerciseSpin.setSelection(list.indexOf(historyItem.getWorkoutExercise()));
+    	            	}
+    	            }
     	        }
     	        if(MuscleSpin.contentEquals("Legs")) {
     	        	//make array of list of items based on 1st spinner selections
@@ -147,6 +158,14 @@ public class CreateWorkoutActivity extends Activity implements OnItemSelectedLis
     	            dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     	            dataAdapter2.notifyDataSetChanged();
     	            ExerciseSpin.setAdapter(dataAdapter2);
+    	            
+    	            //if history item isn't null, then we have incoming history to deal with
+    	            if(historyItem != null){
+    	            	//if this list contains the exercise that is in historyItem, set selected to it.
+    	            	if (list.contains(historyItem.getWorkoutExercise())){
+    	            		ExerciseSpin.setSelection(list.indexOf(historyItem.getWorkoutExercise()));
+    	            	}
+    	            }
     	        }
     	        if(MuscleSpin.contentEquals("Shoulders")) {
     	        	//make array of list of items based on 1st spinner selections
@@ -170,6 +189,14 @@ public class CreateWorkoutActivity extends Activity implements OnItemSelectedLis
     	            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     	            dataAdapter.notifyDataSetChanged();
     	            ExerciseSpin.setAdapter(dataAdapter);
+    	            
+    	            //if history item isn't null, then we have incoming history to deal with
+    	            if(historyItem != null){
+    	            	//if this list contains the exercise that is in historyItem, set selected to it.
+    	            	if (list.contains(historyItem.getWorkoutExercise())){
+    	            		ExerciseSpin.setSelection(list.indexOf(historyItem.getWorkoutExercise()));
+    	            	}
+    	            }
     	        }
     	        if(MuscleSpin.contentEquals("Chest")) {
     	        	//make array of list of items based on 1st spinner selections
@@ -192,6 +219,14 @@ public class CreateWorkoutActivity extends Activity implements OnItemSelectedLis
     	            dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     	            dataAdapter2.notifyDataSetChanged();
     	            ExerciseSpin.setAdapter(dataAdapter2);
+    	            
+    	            //if history item isn't null, then we have incoming history to deal with
+    	            if(historyItem != null){
+    	            	//if this list contains the exercise that is in historyItem, set selected to it.
+    	            	if (list.contains(historyItem.getWorkoutExercise())){
+    	            		ExerciseSpin.setSelection(list.indexOf(historyItem.getWorkoutExercise()));
+    	            	}
+    	            }
     	        }
     	        if(MuscleSpin.contentEquals("Back")) {
     	        	//make array of list of items based on 1st spinner selections
@@ -216,6 +251,14 @@ public class CreateWorkoutActivity extends Activity implements OnItemSelectedLis
     	            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     	            dataAdapter.notifyDataSetChanged();
     	            ExerciseSpin.setAdapter(dataAdapter);
+    	            
+    	            //if history item isn't null, then we have incoming history to deal with
+    	            if(historyItem != null){
+    	            	//if this list contains the exercise that is in historyItem, set selected to it.
+    	            	if (list.contains(historyItem.getWorkoutExercise())){
+    	            		ExerciseSpin.setSelection(list.indexOf(historyItem.getWorkoutExercise()));
+    	            	}
+    	            }
     	        }
     	        if(MuscleSpin.contentEquals("Body Weight")) {
     	        	//make array of list of items based on 1st spinner selections
@@ -241,6 +284,14 @@ public class CreateWorkoutActivity extends Activity implements OnItemSelectedLis
     	            dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     	            dataAdapter2.notifyDataSetChanged();
     	            ExerciseSpin.setAdapter(dataAdapter2);
+    	            
+    	            //if history item isn't null, then we have incoming history to deal with
+    	            if(historyItem != null){
+    	            	//if this list contains the exercise that is in historyItem, set selected to it.
+    	            	if (list.contains(historyItem.getWorkoutExercise())){
+    	            		ExerciseSpin.setSelection(list.indexOf(historyItem.getWorkoutExercise()));
+    	            	}
+    	            }
     	        }
     	    }
 

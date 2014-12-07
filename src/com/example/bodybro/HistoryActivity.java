@@ -4,21 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.parse.FindCallback;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
-import com.parse.ParseException;
-import com.parse.ParseUser;
-
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.ClipData.Item;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -27,6 +15,12 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 public class HistoryActivity extends Activity {
 	List<HistoryItem> historyList;
@@ -68,9 +62,11 @@ public class HistoryActivity extends Activity {
 		        	   Date date = obj.getUpdatedAt();
 		        	   String workoutType = obj.getString("workoutType");
 		        	   String workoutExercise = obj.getString("exercise");
+		        	   String reps = obj.getString("reps");
+		        	   String weight = obj.getString("weight");
 		        	   
 		        	   //make history item out of the info then place it in a list
-		        	   HistoryItem newHistoryItem = new HistoryItem(name, date.toString(), workoutType, workoutExercise);
+		        	   HistoryItem newHistoryItem = new HistoryItem(name, date.toString(), workoutType, workoutExercise, reps, weight);
 		        	   historyList.add(newHistoryItem);
 		           }
 		           
