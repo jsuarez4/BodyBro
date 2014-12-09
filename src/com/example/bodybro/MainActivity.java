@@ -10,11 +10,22 @@ import android.widget.TextView;
 import com.parse.ParseUser;
 
 public class MainActivity extends Activity {
-	static boolean isShownSplashScreen;
+	static boolean isShownSplashScreen = false;
 	
 	@Override
 	protected void onResume() {
 		super.onResume();
+		//if this app is being opened for the first time, show splash screen
+		if (!isShownSplashScreen){
+			isShownSplashScreen = true;
+			startActivity(new Intent(MainActivity.this, SplashScreenActivity.class));
+		}
+	}
+	@Override
+	protected void onCreate(Bundle savedInstanceState) { 
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		
 		ParseUser currentUser = ParseUser.getCurrentUser();
 		if(currentUser == null){
 			//if there is no current user, then start the login activity
@@ -31,18 +42,6 @@ public class MainActivity extends Activity {
 					startActivity(new Intent(MainActivity.this,LoginActivity.class));
 				}
 			});
-		}
-		
-	}
-	@Override
-	protected void onCreate(Bundle savedInstanceState) { 
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		
-		//if this app is being opened for the first time, show splash screen
-		if (!isShownSplashScreen){
-			isShownSplashScreen = true;
-			startActivity(new Intent(MainActivity.this, SplashScreenActivity.class));
 		}
 		
 		//setting up the workout button
