@@ -22,6 +22,15 @@ public class MainActivity extends Activity {
 		} else {
 			//if there is a current user then put the username at the bottom of the screen
 			((TextView)findViewById(R.id.text_view_username)).setText("Logged in as: " + currentUser.getUsername());
+			Button buttonLogout = (Button)findViewById(R.id.Log_out_btn);
+			buttonLogout.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					ParseUser.logOut();
+					startActivity(new Intent(MainActivity.this,LoginActivity.class));
+				}
+			});
 		}
 		
 	}

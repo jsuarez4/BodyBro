@@ -56,8 +56,8 @@ public class CreateWorkoutActivity extends Activity implements OnItemSelectedLis
     	        	
     	        	//preset all the boxes and things to the bundle
     	        	MuscleGroupSpin.setSelection(muscleGroupArray.indexOf(historyItem.getWorkoutType()));
-    	        	etReps.setText(historyItem.getReps());
-    	        	etWeight.setText(historyItem.getWeight());
+    	        	etReps.setText(historyItem.getWeight());
+    	        	etWeight.setText(historyItem.getReps());
     	        }
   	    
         		//pull the current user

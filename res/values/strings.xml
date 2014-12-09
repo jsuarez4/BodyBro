@@ -60,6 +60,7 @@
         <item>Back</item>
         <item>Body Weight</item>
         </string-array>
+        <string name="random_workout">random workout</string>
 
 
 </resources>

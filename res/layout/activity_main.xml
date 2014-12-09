@@ -13,16 +13,6 @@
         android:layout_marginBottom="96dp"
         android:text="@string/label_button_workout" />
 
-    <TextView
-        android:id="@+id/text_view_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="30sp" />
-
     <Button
         android:id="@+id/button_history"
         android:layout_width="match_parent"
@@ -30,5 +20,25 @@
         android:layout_above="@+id/text_view_username"
         android:layout_alignParentLeft="true"
         android:text="@string/label_button_history" />
+    
+    <Button 
+        android:layout_height="wrap_content"	
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:id="@+id/Log_out_btn"
+        android:text="LogOut"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/text_view_username"
+        android:layout_alignTop="@+id/text_view_username"/>
+
+    <TextView
+        android:id="@+id/text_view_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="30sp" />
 
 </RelativeLayout>

@@ -10,7 +10,7 @@ public class MuscleGroupActivity extends Activity {
 	//this will store all the muscle related buttons
 	Button[] muscleButtons;
 	//this will store tags to attach to the buttons
-	String[] muscleTags = {"Arms", "Back", "Chest", "Legs", "Shoulders"};
+	String[] muscleTags = {"Arms", "Back", "Chest", "Legs", "Shoulders","Body Weight"};
 	
 	//these will be used as keys to be able to pull data for each button
 	static final String MUSCLE_KEY = "muscleTag";
@@ -21,12 +21,13 @@ public class MuscleGroupActivity extends Activity {
 		setContentView(R.layout.activity_muscle_group);
 		
 		//initialize the array of buttons for muscles
-		muscleButtons = new Button[5];
+		muscleButtons = new Button[6];
 		muscleButtons[0] = (Button) findViewById(R.id.button_arms);
 		muscleButtons[1] = (Button) findViewById(R.id.button_back);
 		muscleButtons[2] = (Button) findViewById(R.id.button_chest);
 		muscleButtons[3] = (Button) findViewById(R.id.button_legs);
 		muscleButtons[4] = (Button) findViewById(R.id.button_shoulders);
+		muscleButtons[5] = (Button) findViewById(R.id.button_body_weight);
 		
 		//loop through buttons and do stuff to them
 		for(int i = 0; i < muscleButtons.length; i++){
