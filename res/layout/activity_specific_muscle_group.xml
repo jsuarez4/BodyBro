@@ -48,6 +48,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/random_work"
         android:ems="10"
+        android:inputType="number"
         android:hint="Enter Amount of Reps done" >
 
         <requestFocus />
@@ -60,6 +61,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/edit_text_list_view_create_weight"
         android:ems="10"
+        android:inputType="number"
         android:hint="Enter Weight Used" />
 
     <SlidingDrawer
