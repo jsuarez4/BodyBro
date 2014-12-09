@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.parse.ParseUser;
 
 public class MainActivity extends Activity {
-
+	static boolean isShownSplashScreen;
 	
 	@Override
 	protected void onResume() {
@@ -38,6 +38,12 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) { 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		//if this app is being opened for the first time, show splash screen
+		if (!isShownSplashScreen){
+			isShownSplashScreen = true;
+			startActivity(new Intent(MainActivity.this, SplashScreenActivity.class));
+		}
 		
 		//setting up the workout button
 		Button buttonWorkout = (Button) findViewById(R.id.button_workout);

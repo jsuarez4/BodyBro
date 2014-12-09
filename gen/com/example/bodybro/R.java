@@ -24,6 +24,7 @@ public final class R {
         public static final int icn_dropdown_checked=0x7f020003;
         public static final int icn_dropdown_close=0x7f020004;
         public static final int icn_dropdown_open=0x7f020005;
+        public static final int splash=0x7f020006;
     }
     public static final class id {
         public static final int Exercise_prompt=0x7f090003;
@@ -31,8 +32,8 @@ public final class R {
         public static final int Label_Text_Muscle1=0x7f090001;
         public static final int Log_out_btn=0x7f090014;
         public static final int MuscleType=0x7f090002;
-        public static final int RelativeLayout1=0x7f090028;
-        public static final int Space1=0x7f090029;
+        public static final int RelativeLayout1=0x7f090029;
+        public static final int Space1=0x7f09002a;
         public static final int WorkOutType=0x7f090004;
         public static final int button_arms=0x7f090019;
         public static final int button_back=0x7f090016;
@@ -48,7 +49,7 @@ public final class R {
         public static final int button_randomize_workout=0x7f090021;
         public static final int button_shoulders=0x7f090017;
         public static final int button_to_register=0x7f090010;
-        public static final int button_use_workout=0x7f09002c;
+        public static final int button_use_workout=0x7f09002d;
         public static final int button_workout=0x7f090011;
         public static final int content=0x7f090025;
         public static final int dropdown_muscle_group=0x7f09000a;
@@ -60,15 +61,16 @@ public final class R {
         public static final int edit_text_register_username=0x7f09001d;
         public static final int edit_text_username=0x7f09000e;
         public static final int handle=0x7f090026;
+        public static final int imageView1=0x7f090028;
         public static final int image_workout=0x7f090027;
         public static final int label_button_Submit_New=0x7f090007;
         public static final int list_view_history=0x7f090009;
         public static final int random_work=0x7f090022;
         public static final int slidingDrawer1=0x7f090024;
-        public static final int text_view_history_date=0x7f09002d;
+        public static final int text_view_history_date=0x7f09002e;
         public static final int text_view_history_logged_in_as=0x7f09000c;
-        public static final int text_view_history_workout_exercise=0x7f09002b;
-        public static final int text_view_history_workout_type=0x7f09002a;
+        public static final int text_view_history_workout_exercise=0x7f09002c;
+        public static final int text_view_history_workout_type=0x7f09002b;
         public static final int text_view_specific_group=0x7f090020;
         public static final int text_view_username=0x7f090013;
         public static final int textview_filter_history_label=0x7f09000b;

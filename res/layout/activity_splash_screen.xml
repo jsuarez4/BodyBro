@@ -4,14 +4,13 @@
     android:layout_height="match_parent"
     tools:context="${relativePackage}.${activityClass}" >
 
-    <TextView
-        android:id="@+id/textview_filter_history_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="64dp"
-        android:text="@string/string_splash_title"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:scaleType="fitXY"
+        android:src="@drawable/splash" />
 
 </RelativeLayout>
