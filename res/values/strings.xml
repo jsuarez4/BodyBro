@@ -61,6 +61,7 @@
         <item>Body Weight</item>
         </string-array>
         <string name="random_workout">random workout</string>
+        <string name="string_exercise_diagram_button">Show Diagram</string>
 
 
 </resources>

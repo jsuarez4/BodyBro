@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:text="@string/hello_world" />
+        android:text="@string/label_button_done" />
 
     <EditText
         android:id="@+id/edit_text_list_view_create_weight"
@@ -48,8 +48,8 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/random_work"
         android:ems="10"
-        android:inputType="number"
-        android:hint="Enter Amount of Reps done" >
+        android:hint="Enter Amount of Reps done"
+        android:inputType="number" >
 
         <requestFocus />
     </EditText>
@@ -61,8 +61,8 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/edit_text_list_view_create_weight"
         android:ems="10"
-        android:inputType="number"
-        android:hint="Enter Weight Used" />
+        android:hint="Enter Weight Used"
+        android:inputType="number" />
 
     <SlidingDrawer
         android:id="@+id/slidingDrawer1"
@@ -78,9 +78,9 @@
             android:id="@+id/handle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Handle" />
+            android:text="@string/string_exercise_diagram_button" />
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="194dp" >
@@ -89,9 +89,11 @@
                 android:id="@+id/image_workout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
                 android:src="@drawable/ic_launcher" />
 
-        </LinearLayout>
+        </RelativeLayout>
     </SlidingDrawer>
 
 </RelativeLayout>

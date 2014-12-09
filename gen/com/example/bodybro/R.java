@@ -129,6 +129,7 @@ public final class R {
         public static final int string_button_to_register=0x7f060021;
         public static final int string_delete=0x7f06001c;
         public static final int string_dropdown_label=0x7f060028;
+        public static final int string_exercise_diagram_button=0x7f060033;
         public static final int string_splash_title=0x7f060026;
         public static final int title_activity_chest=0x7f06000f;
         public static final int title_activity_create_workout=0x7f060015;

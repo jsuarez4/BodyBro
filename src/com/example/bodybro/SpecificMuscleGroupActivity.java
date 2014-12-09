@@ -6,8 +6,12 @@ import java.util.Random;
 
 import org.w3c.dom.Text;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.squareup.picasso.Picasso;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -204,6 +208,20 @@ public class SpecificMuscleGroupActivity extends Activity {
 			public void onClick(View v) {
 				String item = (String) armArray.get(randomGenerator.nextInt(armArray.size()));
 				((TextView)findViewById(R.id.random_work)).setText(item);
+				
+				ParseQuery<ParseObject> query = ParseQuery.getQuery("Exercises");
+				query.whereEqualTo("exercise", item);
+				query.findInBackground(new FindCallback<ParseObject>() {
+					
+					@Override
+					public void done(List<ParseObject> objects, ParseException e) {
+						//now that we have pulled a parseobject we can get the image url
+						//to load into the pop up diagram
+						String imageUrl = (String) objects.get(0).get("imageLink");
+						ImageView iv = (ImageView) findViewById(R.id.image_workout);
+						Picasso.with(SpecificMuscleGroupActivity.this).load(imageUrl).into(iv);
+					}
+				});
 			}
 		});
 	
@@ -215,6 +233,20 @@ RandoButton.setOnClickListener(new View.OnClickListener() {
 public void onClick(View v) {
 	String item = (String)chestArray.get(randomGenerator.nextInt(chestArray.size()));
 	((TextView)findViewById(R.id.random_work)).setText(item);
+	
+	ParseQuery<ParseObject> query = ParseQuery.getQuery("Exercises");
+	query.whereEqualTo("exercise", item);
+	query.findInBackground(new FindCallback<ParseObject>() {
+		
+		@Override
+		public void done(List<ParseObject> objects, ParseException e) {
+			//now that we have pulled a parseobject we can get the image url
+			//to load into the pop up diagram
+			String imageUrl = (String) objects.get(0).get("imageLink");
+			ImageView iv = (ImageView) findViewById(R.id.image_workout);
+			Picasso.with(SpecificMuscleGroupActivity.this).load(imageUrl).into(iv);
+		}
+	});
 }
 });
 
@@ -226,6 +258,20 @@ RandoButton.setOnClickListener(new View.OnClickListener() {
 public void onClick(View v) {
 String item = (String) backArray.get(randomGenerator.nextInt(backArray.size()));
 ((TextView)findViewById(R.id.random_work)).setText(item);
+
+ParseQuery<ParseObject> query = ParseQuery.getQuery("Exercises");
+query.whereEqualTo("exercise", item);
+query.findInBackground(new FindCallback<ParseObject>() {
+	
+	@Override
+	public void done(List<ParseObject> objects, ParseException e) {
+		//now that we have pulled a parseobject we can get the image url
+		//to load into the pop up diagram
+		String imageUrl = (String) objects.get(0).get("imageLink");
+		ImageView iv = (ImageView) findViewById(R.id.image_workout);
+		Picasso.with(SpecificMuscleGroupActivity.this).load(imageUrl).into(iv);
+	}
+});
 }
 });
 
@@ -237,6 +283,20 @@ RandoButton.setOnClickListener(new View.OnClickListener() {
 public void onClick(View v) {
 String item = (String) legArray.get(randomGenerator.nextInt(legArray.size()));
 ((TextView)findViewById(R.id.random_work)).setText(item);
+
+ParseQuery<ParseObject> query = ParseQuery.getQuery("Exercises");
+query.whereEqualTo("exercise", item);
+query.findInBackground(new FindCallback<ParseObject>() {
+	
+	@Override
+	public void done(List<ParseObject> objects, ParseException e) {
+		//now that we have pulled a parseobject we can get the image url
+		//to load into the pop up diagram
+		String imageUrl = (String) objects.get(0).get("imageLink");
+		ImageView iv = (ImageView) findViewById(R.id.image_workout);
+		Picasso.with(SpecificMuscleGroupActivity.this).load(imageUrl).into(iv);
+	}
+});
 }
 });
 
@@ -248,6 +308,20 @@ RandoButton.setOnClickListener(new View.OnClickListener() {
 public void onClick(View v) {
 String item = (String) shoulderArray.get(randomGenerator.nextInt(shoulderArray.size()));
 ((TextView)findViewById(R.id.random_work)).setText(item);
+
+ParseQuery<ParseObject> query = ParseQuery.getQuery("Exercises");
+query.whereEqualTo("exercise", item);
+query.findInBackground(new FindCallback<ParseObject>() {
+	
+	@Override
+	public void done(List<ParseObject> objects, ParseException e) {
+		//now that we have pulled a parseobject we can get the image url
+		//to load into the pop up diagram
+		String imageUrl = (String) objects.get(0).get("imageLink");
+		ImageView iv = (ImageView) findViewById(R.id.image_workout);
+		Picasso.with(SpecificMuscleGroupActivity.this).load(imageUrl).into(iv);
+	}
+});
 }
 });
 
@@ -261,6 +335,20 @@ RandoButton.setOnClickListener(new View.OnClickListener() {
 public void onClick(View v) {
 String item = (String) bodyArray.get(randomGenerator.nextInt(bodyArray.size()));
 ((TextView)findViewById(R.id.random_work)).setText(item);
+
+ParseQuery<ParseObject> query = ParseQuery.getQuery("Exercises");
+query.whereEqualTo("exercise", item);
+query.findInBackground(new FindCallback<ParseObject>() {
+	
+	@Override
+	public void done(List<ParseObject> objects, ParseException e) {
+		//now that we have pulled a parseobject we can get the image url
+		//to load into the pop up diagram
+		String imageUrl = (String) objects.get(0).get("imageLink");
+		ImageView iv = (ImageView) findViewById(R.id.image_workout);
+		Picasso.with(SpecificMuscleGroupActivity.this).load(imageUrl).into(iv);
+	}
+});
 }
 });
 
