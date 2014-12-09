@@ -6,43 +6,83 @@ import java.util.Random;
 
 import org.w3c.dom.Text;
 
+import com.parse.ParseObject;
+import com.parse.ParseUser;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SlidingDrawer;
+import android.widget.Spinner;
+import android.widget.Toast;
 import android.widget.SlidingDrawer.OnDrawerScrollListener;
 import android.widget.TextView;
 
 public class SpecificMuscleGroupActivity extends Activity {
 	
+	 	ParseUser currentUser;
 
-//private SlidingDrawer slidingImage;
-
+	 	
+    	private static final String TAG = CreateWorkoutActivity.class.getName();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_specific_muscle_group);
+		
+		
 		//receive the data attached from MuscleGroupActivity, "Chest", "Arms", etc
-		String muscleLabel = getIntent().getExtras().getString(MuscleGroupActivity.MUSCLE_KEY);
-		
-		//initialize history button
-		Button historyButton = (Button) findViewById(R.id.button_history_specific_group);
-		historyButton.setText("History: " + muscleLabel);
-		
+		 String muscleLabel = getIntent().getExtras().getString(MuscleGroupActivity.MUSCLE_KEY);
+
 		//update the text box with the muscle label sent from the previous activity
-		TextView activityTitle = (TextView) findViewById(R.id.text_view_specific_group);
+		final TextView activityTitle = (TextView) findViewById(R.id.text_view_specific_group);
 		activityTitle.setText(muscleLabel);
-		
+		//global
+		final TextView ranExercise = (TextView)findViewById(R.id.random_work);
 		Button RandoButton =(Button)findViewById(R.id.button_randomize_workout);
 		final Random randomGenerator = new Random();
 		
-//		//sliding image up
-//		slidingImage = (SlidingDrawer) findViewById(R.id.slidingDrawer1);
-		
-		
+        
+  
+		//pull the current user
+		currentUser = ParseUser.getCurrentUser();
+        //starting button when clicked  	        
+		Button btnSave = (Button) findViewById(R.id.button_history_specific_group);
+		btnSave.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+    	        //make text from edit text to string 
+    	        EditText repsInput = (EditText) findViewById(R.id.edit_text_list_view_create_reps);
+    	        EditText weightInput = (EditText) findViewById(R.id.edit_text_list_view_create_weight);
+    	      //  String MuscleInput = MuscleName;
+    	        //String ExerciseInput= ExerciseSpin.getSelectedItem().toString();
+    	        //tostring for push to parse
+    	         String WeightInput = repsInput.getText().toString();
+    	         String RepsInput  = weightInput.getText().toString();
+    	         //intent to back to main menu after published 
+				startActivity(new Intent(SpecificMuscleGroupActivity.this, MainActivity.class));
+				//push to parse objects
+				ParseObject CustomWorkOut = new ParseObject("History");
+				CustomWorkOut.put("user",currentUser.getUsername());		
+				CustomWorkOut.put("workoutType", activityTitle.getText().toString());
+				Log.d(TAG, "workout");   
+				CustomWorkOut.put("weight", WeightInput);
+				Log.d(TAG, "weight");   
+				CustomWorkOut.put("reps", RepsInput);
+				Log.d(TAG, "reps");   
+				CustomWorkOut.put("exercise", ranExercise.getText().toString());
+				Log.d(TAG, "exercise");   
+				CustomWorkOut.saveInBackground();
+				Log.d(TAG, "SAVE SUCCESSFUL");   
+				
+			}
+		});
 		
 		
 		final ArrayList armArray = new ArrayList() {{
@@ -142,6 +182,21 @@ public class SpecificMuscleGroupActivity extends Activity {
     	            add("Twisting Floor Crunch");
     	            add("Toe Touchers");
     	           }};
+    	           
+//    	           if (muscleLabel.contentEquals("random workout")){
+//		RandoButton.setOnClickListener(new View.OnClickListener() {
+//		
+//			@Override
+//			public void onClick(View v) {
+//				
+//				CharSequence text = "Not a Work Out";
+//    	        Toast.makeText(SpecificMuscleGroupActivity.this, text, Toast.LENGTH_SHORT).show();
+//			}
+//			});
+//		}
+    	           
+    	           
+    	           
     	           if (muscleLabel.contentEquals("Arms")){
 		RandoButton.setOnClickListener(new View.OnClickListener() {
 		
