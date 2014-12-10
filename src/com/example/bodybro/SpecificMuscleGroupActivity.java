@@ -38,7 +38,7 @@ public class SpecificMuscleGroupActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_specific_muscle_group);
-		
+		setTitle("Body Bro");
 		
 		//receive the data attached from MuscleGroupActivity, "Chest", "Arms", etc
 		 String muscleLabel = getIntent().getExtras().getString(MuscleGroupActivity.MUSCLE_KEY);

@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) { 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+		setTitle("Body Bro");
 		ParseUser currentUser = ParseUser.getCurrentUser();
 		if(currentUser == null){
 			//if there is no current user, then start the login activity
@@ -39,7 +39,9 @@ public class MainActivity extends Activity {
 				@Override
 				public void onClick(View v) {
 					ParseUser.logOut();
-					startActivity(new Intent(MainActivity.this,LoginActivity.class));
+					Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+					startActivity(intent);
+					finish();
 				}
 			});
 		}

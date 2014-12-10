@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.DeleteCallback;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -26,7 +27,7 @@ public class HistoryActivity extends Activity {
 	List<HistoryItem> historyList;
 	//this will be used to filter by workoutType
 	String filterByWorkoutType = null;
-	String[] dropdownItems = {"All", "Arms", "Legs", "Chest", "Back", "Body Weight"};
+	String[] dropdownItems = {"All", "Arms", "Legs", "Chest", "Back", "Shoulders", "Body Weight"};
 	ParseUser currentUser;
 	
 	@Override
@@ -91,6 +92,7 @@ public class HistoryActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_history);
+		setTitle("Body Bro");
 		//spinner is the dropdown box
 		Spinner dropdownBox = (Spinner) findViewById(R.id.dropdown_muscle_group);
 		//basic adapter to make the dropdown box list things correctly

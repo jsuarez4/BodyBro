@@ -18,7 +18,7 @@ public class LoginActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-		
+		setTitle("Body Bro");
 		//pull the logic behind the login button and do stuff with it
 		Button btnLogin = (Button) findViewById(R.id.button_login);
 		btnLogin.setOnClickListener(new View.OnClickListener() {

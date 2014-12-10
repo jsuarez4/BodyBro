@@ -33,6 +33,7 @@ public class CreateWorkoutActivity extends Activity implements OnItemSelectedLis
     	    protected void onCreate(Bundle savedInstanceState) {
     	        super.onCreate(savedInstanceState);
     	        setContentView(R.layout.activity_create_workout);
+    	        setTitle("Body Bro");
     	        //spinner objects
     	        MuscleGroupSpin = (Spinner)findViewById(R.id.MuscleType);
     	        ExerciseSpin= (Spinner)findViewById(R.id.WorkOutType);

@@ -15,6 +15,7 @@ public final class R {
     }
     public static final class color {
         public static final int light_gray=0x7f040000;
+        public static final int mint=0x7f040002;
         public static final int white=0x7f040001;
     }
     public static final class drawable {
@@ -25,6 +26,7 @@ public final class R {
         public static final int icn_dropdown_close=0x7f020004;
         public static final int icn_dropdown_open=0x7f020005;
         public static final int splash=0x7f020006;
+        public static final int workout_icon=0x7f020007;
     }
     public static final class id {
         public static final int Exercise_prompt=0x7f090003;

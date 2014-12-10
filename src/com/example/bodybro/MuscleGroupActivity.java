@@ -32,6 +32,8 @@ public class MuscleGroupActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_muscle_group);
+		setTitle("Body Bro");
+		
 		if (ParseUser.getCurrentUser() != null){
 			currentUser = ParseUser.getCurrentUser();
 		}

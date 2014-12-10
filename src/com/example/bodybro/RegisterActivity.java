@@ -18,7 +18,7 @@ public class RegisterActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
-		
+		setTitle("Body Bro");
 		Button btnFinish = (Button) findViewById(R.id.button_finish);
 		btnFinish.setOnClickListener(new View.OnClickListener() {
 			

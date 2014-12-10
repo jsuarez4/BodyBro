@@ -16,7 +16,7 @@ public class SplashScreenActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash_screen);
-		
+		setTitle("Body Bro");
 		//disclaimer
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage("You should be in good physical condition and be able to participate in the exercise. Body Bro is not a licensed medical care provider and represents that it has no expertise in diagnosing, examining, or treating medical conditions of any kind, or in determining the effect of any specific exercise on a medical condition. You should understand that when participating in any exercise or exercise program, there is the possibility of physical injury. If you engage in this exercise or exercise program, you agree that you do so at your own risk, are voluntarily participating in these activities, assume all risk of injury to yourself, and agree to release and discharge Body Bro from any and all claims or causes of action, known or unknown, arising out of Body Bro's negligence.");

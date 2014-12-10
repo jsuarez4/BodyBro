@@ -2,19 +2,29 @@ package com.example.bodybro;
 
 import java.util.List;
 
+import com.parse.DeleteCallback;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class HistoryListAdapter extends ArrayAdapter<HistoryItem>{
 	List<HistoryItem> historyList;
 	int resource;
-	Context context;
+	final Context context;
 	
 	public HistoryListAdapter(Context context, int resource,
 			List<HistoryItem> objects) {
@@ -32,7 +42,7 @@ public class HistoryListAdapter extends ArrayAdapter<HistoryItem>{
 		}
 		
 		//pull the current history item from the list that's given to us
-		HistoryItem historyItem = historyList.get(position);
+		final HistoryItem historyItem = historyList.get(position);
 		
 		//pull the use workout button which moves to the create workout activity class
 		Button btnUseWorkout = (Button) convertView.findViewById(R.id.button_use_workout);

@@ -2,16 +2,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mint"
     tools:context="${relativePackage}.${activityClass}" >
+
        <!--
 scroll view >...
       -->
     
-    
-<LinearLayout 
+<LinearLayout
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation ="vertical">
+    android:background="@color/mint"
+    android:orientation="vertical" >
+
     <Button
         android:id="@+id/button_chest"
         android:layout_width="match_parent"
