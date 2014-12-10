@@ -81,7 +81,8 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/button_back"
             android:layout_centerHorizontal="true"
-            android:text="Back" />
+            android:text="Back"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/TextView02"
@@ -89,7 +90,8 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/button_shoulders"
             android:layout_centerHorizontal="true"
-            android:text="Shoulders" />
+            android:text="Shoulders"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/TextView03"
@@ -97,7 +99,8 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/button_legs"
             android:layout_centerHorizontal="true"
-            android:text="Legs" />
+            android:text="Legs"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/TextView04"
@@ -105,7 +108,8 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/button_arms"
             android:layout_centerHorizontal="true"
-            android:text="Arms" />
+            android:text="Arms"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/TextView05"
@@ -113,7 +117,8 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/button_body_weight"
             android:layout_centerHorizontal="true"
-            android:text="Body Weight" />
+            android:text="Body Weight"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/TextView06"
@@ -121,7 +126,8 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/button_create_workout"
             android:layout_centerHorizontal="true"
-            android:text="Create Workout" />
+            android:text="Create Workout"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/TextView07"
@@ -129,7 +135,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:text="Chest" />
+            android:text="Chest"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 

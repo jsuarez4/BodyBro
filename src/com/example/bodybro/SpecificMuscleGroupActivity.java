@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SlidingDrawer;
 import android.widget.Spinner;
@@ -70,7 +71,9 @@ public class SpecificMuscleGroupActivity extends Activity {
     	         String WeightInput = repsInput.getText().toString();
     	         String RepsInput  = weightInput.getText().toString();
     	         //intent to back to main menu after published 
-				startActivity(new Intent(SpecificMuscleGroupActivity.this, MainActivity.class));
+				//startActivity(new Intent(SpecificMuscleGroupActivity.this, MainActivity.class));
+    	         CharSequence MuscleSpin = "Saved";
+     	        Toast.makeText(SpecificMuscleGroupActivity.this, MuscleSpin, Toast.LENGTH_LONG).show();
 				//push to parse objects
 				ParseObject CustomWorkOut = new ParseObject("History");
 				CustomWorkOut.put("user",currentUser.getUsername());		

@@ -104,7 +104,7 @@ public class CreateWorkoutActivity extends Activity implements OnItemSelectedLis
     	            long arg3) {
     	        // TODO Auto-generated method stub
     	        String MuscleSpin= String.valueOf(MuscleGroupSpin.getSelectedItem());
-    	        Toast.makeText(this, MuscleSpin, Toast.LENGTH_SHORT).show();
+    	        //Toast.makeText(this, MuscleSpin, Toast.LENGTH_SHORT).show();
     	        if(MuscleSpin.contentEquals("Arms")) {
     	        	//make array of list of items based on 1st spinner selections
     	            List<String> list = new ArrayList<String>();

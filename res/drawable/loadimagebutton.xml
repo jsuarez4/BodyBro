@@ -8,11 +8,11 @@ xmlns:android="http://schemas.android.com/apk/res/android">
 <item
  android:state_focused="true"
  android:state_pressed="true"
- android:drawable="@drawable/redbutt" />
+ android:drawable="@drawable/redsplat" />
 <item
  android:state_focused="false"
  android:state_pressed="true"
- android:drawable="@drawable/redbutt" />
+ android:drawable="@drawable/redsplat" />
 <item  
  android:drawable="@drawable/redbutt" />
 </selector>

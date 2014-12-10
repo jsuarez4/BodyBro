@@ -41,13 +41,4 @@
         android:layout_alignParentTop="true"
         android:text="@string/string_dropdown_label" />
 
-    <TextView
-        android:id="@+id/text_view_history_logged_in_as"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
 </RelativeLayout>

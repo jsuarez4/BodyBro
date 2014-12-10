@@ -38,8 +38,8 @@ public class HistoryActivity extends Activity {
 		currentUser = ParseUser.getCurrentUser();
 	
 		//show who is logged in at top of screen
-		TextView tvLoggedInAs = (TextView) findViewById(R.id.text_view_history_logged_in_as);
-		tvLoggedInAs.setText("Logged in as: " + currentUser.getUsername());
+//		TextView tvLoggedInAs = (TextView) findViewById(R.id.text_view_history_logged_in_as);
+//		tvLoggedInAs.setText("Logged in as: " + currentUser.getUsername());
 		
 		//create a parsequery for the history table then query for all the user's history
 		ParseQuery<ParseObject> query = ParseQuery.getQuery("History");
