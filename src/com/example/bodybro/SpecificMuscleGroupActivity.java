@@ -172,7 +172,6 @@ public class SpecificMuscleGroupActivity extends Activity {
 	        	
 
     	           final ArrayList bodyArray = new ArrayList(){{
-    	            add("Breakfast");
     	            add("Crunches");
     	            add("Plank");
     	            add("Close Hand Pushup");

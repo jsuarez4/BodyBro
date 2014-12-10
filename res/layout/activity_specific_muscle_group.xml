@@ -34,14 +34,6 @@
         android:text="@string/random_workout"
         android:textSize="20sp" />
 
-    <Button
-        android:id="@+id/button_history_specific_group"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:text="@string/label_button_done" />
-
     <EditText
         android:id="@+id/edit_text_list_view_create_weight"
         android:layout_width="match_parent"
@@ -65,13 +57,21 @@
         android:hint="Enter Weight Used"
         android:inputType="number" />
 
+    <Button
+        android:id="@+id/button_history_specific_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/edit_text_list_view_create_reps"
+        android:minHeight="150dp"
+        android:text="@string/string_button_done" />
+
     <SlidingDrawer
         android:id="@+id/slidingDrawer1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/button_history_specific_group"
         android:layout_alignParentLeft="true"
-        android:layout_alignTop="@+id/edit_text_list_view_create_reps"
+        android:layout_below="@+id/button_history_specific_group"
         android:content="@+id/content"
         android:handle="@+id/handle" >
 
@@ -84,7 +84,7 @@
         <RelativeLayout
             android:id="@+id/content"
             android:layout_width="match_parent"
-            android:layout_height="194dp" >
+            android:layout_height="match_parent" >
 
             <ImageView
                 android:id="@+id/image_workout"
@@ -93,7 +93,6 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/ic_launcher" />
-
         </RelativeLayout>
     </SlidingDrawer>
 
