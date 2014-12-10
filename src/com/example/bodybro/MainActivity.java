@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.parse.ParseUser;
@@ -47,7 +48,7 @@ public class MainActivity extends Activity {
 		}
 		
 		//setting up the workout button
-		Button buttonWorkout = (Button) findViewById(R.id.button_workout);
+		ImageButton buttonWorkout = (ImageButton) findViewById(R.id.button_workout);
 		buttonWorkout.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -58,7 +59,7 @@ public class MainActivity extends Activity {
 		});
 		
 		//setting up the history button
-		Button buttonHistory = (Button) findViewById(R.id.button_history);
+		ImageButton buttonHistory = (ImageButton) findViewById(R.id.button_history);
 		buttonHistory.setOnClickListener(new View.OnClickListener() {
 			
 			@Override

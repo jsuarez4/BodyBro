@@ -16,10 +16,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class MuscleGroupActivity extends Activity {
 	//this will store all the muscle related buttons
-	Button[] muscleButtons;
+	ImageButton[] muscleButtons;
 	//this will store tags to attach to the buttons
 	String[] muscleTags = {"Arms", "Back", "Chest", "Legs", "Shoulders","Body Weight"};
 	AlertDialog muscleOveruseDialog;
@@ -39,13 +40,13 @@ public class MuscleGroupActivity extends Activity {
 		}
 		
 		//initialize the array of buttons for muscles
-		muscleButtons = new Button[6];
-		muscleButtons[0] = (Button) findViewById(R.id.button_arms);
-		muscleButtons[1] = (Button) findViewById(R.id.button_back);
-		muscleButtons[2] = (Button) findViewById(R.id.button_chest);
-		muscleButtons[3] = (Button) findViewById(R.id.button_legs);
-		muscleButtons[4] = (Button) findViewById(R.id.button_shoulders);
-		muscleButtons[5] = (Button) findViewById(R.id.button_body_weight);
+		muscleButtons = new ImageButton[6];
+		muscleButtons[0] = (ImageButton) findViewById(R.id.button_arms);
+		muscleButtons[1] = (ImageButton) findViewById(R.id.button_back);
+		muscleButtons[2] = (ImageButton) findViewById(R.id.button_chest);
+		muscleButtons[3] = (ImageButton) findViewById(R.id.button_legs);
+		muscleButtons[4] = (ImageButton) findViewById(R.id.button_shoulders);
+		muscleButtons[5] = (ImageButton) findViewById(R.id.button_body_weight);
 		
 		//loop through buttons and do stuff to them
 		for(int i = 0; i < muscleButtons.length; i++){
@@ -126,7 +127,7 @@ public class MuscleGroupActivity extends Activity {
 				}
 			});
 			//initialize create workout button
-			Button createWorkoutButton = (Button) findViewById(R.id.button_create_workout);
+			ImageButton createWorkoutButton = (ImageButton) findViewById(R.id.button_create_workout);
 			createWorkoutButton.setOnClickListener(new View.OnClickListener() {
 				
 				@Override

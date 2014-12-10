@@ -2,65 +2,135 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mint"
     tools:context="${relativePackage}.${activityClass}" >
 
-       <!--
-scroll view >...
-      -->
-    
-<LinearLayout
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/mint"
-    android:orientation="vertical" >
+<!-- scroll view >...
+ -->
 
-    <Button
-        android:id="@+id/button_chest"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:text="@string/label_button_chest" />
+    <RelativeLayout
+        android:id="@+id/RelativeLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/button_back"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
+        <ImageButton
+            android:id="@+id/button_chest"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/loadimagebarbell"
+            android:text="@string/label_button_chest" />
 
-        android:text="@string/label_button_back" />
+        <ImageButton
+            android:id="@+id/button_back"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/button_chest"
+            android:background="@drawable/loadimagebarbell"
+            android:text="@string/label_button_back" />
 
-    <Button
-        android:id="@+id/button_shoulders"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
+        <ImageButton
+            android:id="@+id/button_shoulders"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/button_back"
+            android:background="@drawable/loadimagebarbell"
+            android:text="@string/label_button_shoulders" />
 
-        android:text="@string/label_button_shoulders" />
+        <ImageButton
+            android:id="@+id/button_legs"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/button_shoulders"
+            android:background="@drawable/loadimagebarbell"
+            android:text="@string/label_button_legs" />
 
-    <Button
-        android:id="@+id/button_legs"
-        android:layout_width="match_parent"
-       	android:layout_height="70dp"
+        <ImageButton
+            android:id="@+id/button_arms"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/button_legs"
+            android:background="@drawable/loadimagebarbell"
+            android:text="@string/label_button_arms" />
 
-        android:text="@string/label_button_legs" />
+        <ImageButton
+            android:id="@+id/button_body_weight"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/button_arms"
+            android:background="@drawable/loadimagebarbell"
+            android:text="@string/label_button_body_weight" />
 
-    <Button
-        android:id="@+id/button_arms"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
+        <ImageButton
+            android:id="@+id/button_create_workout"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/button_body_weight"
+            android:background="@drawable/loadimagebarbell"
+            android:text="@string/label_button_create_workout" />
 
-        android:text="@string/label_button_arms" />
+        <TextView
+            android:id="@+id/TextView01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/button_back"
+            android:layout_centerHorizontal="true"
+            android:text="Back" />
 
-    <Button
-        android:id="@+id/button_body_weight"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
+        <TextView
+            android:id="@+id/TextView02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/button_shoulders"
+            android:layout_centerHorizontal="true"
+            android:text="Shoulders" />
 
-        android:text="@string/label_button_body_weight" />
+        <TextView
+            android:id="@+id/TextView03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/button_legs"
+            android:layout_centerHorizontal="true"
+            android:text="Legs" />
 
-    <Button
-        android:id="@+id/button_create_workout"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
+        <TextView
+            android:id="@+id/TextView04"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/button_arms"
+            android:layout_centerHorizontal="true"
+            android:text="Arms" />
 
-        android:text="@string/label_button_create_workout" />
-</LinearLayout>
+        <TextView
+            android:id="@+id/TextView05"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/button_body_weight"
+            android:layout_centerHorizontal="true"
+            android:text="Body Weight" />
+
+        <TextView
+            android:id="@+id/TextView06"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/button_create_workout"
+            android:layout_centerHorizontal="true"
+            android:text="Create Workout" />
+
+        <TextView
+            android:id="@+id/TextView07"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="Chest" />
+
+    </RelativeLayout>
+
 </ScrollView>
